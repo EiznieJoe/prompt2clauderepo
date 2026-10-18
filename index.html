@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>KelasQuest Promo 30s</title>
+    <!-- GSAP disimpan dalam repo supaya render tak bergantung pada CDN -->
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #160f3b;
+        --indigo: #221a5c;
+        --purple: #6c4cf1;
+        --gold: #ffc83d;
+        --teal: #2dd4bf;
+        --coral: #ff6b6b;
+        --cream: #fff8ec;
+        --muted: #c9c3f2;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+        color: var(--cream);
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* ---------- Lapisan tetap ---------- */
+      #bg {
+        background:
+          radial-gradient(1200px 700px at 20% 10%, #3a2a9a 0%, transparent 60%),
+          radial-gradient(900px 600px at 90% 90%, #1f6f8b55 0%, transparent 60%),
+          linear-gradient(160deg, var(--indigo) 0%, var(--ink) 70%);
+      }
+      .float {
+        position: absolute;
+        opacity: 0.18;
+      }
+      #xp {
+        position: absolute;
+        top: 40px;
+        left: 80px;
+        right: 80px;
+        height: 14px;
+        border-radius: 7px;
+        background: #ffffff1a;
+        overflow: hidden;
+      }
+      #xp-fill {
+        height: 100%;
+        width: 100%;
+        border-radius: 7px;
+        background: linear-gradient(90deg, var(--teal), var(--gold));
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      #xp-label {
+        position: absolute;
+        top: 64px;
+        left: 80px;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        color: var(--muted);
+      }
+      #watermark {
+        position: absolute;
+        right: 80px;
+        bottom: 56px;
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        opacity: 0;
+      }
+
+      /* ---------- Tipografi ---------- */
+      .line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+      .w {
+        display: inline-block;
+        opacity: 0;
+        margin: 0 0.12em;
+      }
+      .hl {
+        position: relative;
+        display: inline-block;
+        padding: 0 0.18em;
+        isolation: isolate;
+      }
+      .hl .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.04em;
+        height: 0.96em;
+        border-radius: 0.14em;
+        z-index: -1;
+        transform-origin: left center;
+        transform: scaleX(0);
+      }
+      .hl.gold .bar { background: var(--gold); }
+      .hl.coral .bar { background: var(--coral); }
+      .hl.teal .bar { background: var(--teal); }
+      .hl.ink-text { color: var(--cream); }
+      .gold-text { color: var(--gold); }
+      .teal-text { color: var(--teal); }
+
+      /* ---------- Selingan (wipe) ---------- */
+      .wipe {
+        position: absolute;
+        top: -200px;
+        width: 900px;
+        height: 1480px;
+      }
+
+      /* ---------- Scene 2: logo ---------- */
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+      }
+      .wordmark {
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+      .wordmark span { display: inline-block; }
+      .chip {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 999px;
+        background: #ffffff14;
+        border: 2px solid #ffffff2a;
+        font-size: 44px;
+        font-weight: 700;
+        color: var(--cream);
+      }
+
+      /* ---------- Scene 3: kad ciri ---------- */
+      #cards {
+        position: absolute;
+        top: 250px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+      }
+      .card {
+        width: 300px;
+        height: 380px;
+        border-radius: 32px;
+        background: linear-gradient(170deg, #2e2478 0%, #1e1756 100%);
+        border: 3px solid #ffffff1f;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+        opacity: 0;
+        position: relative;
+      }
+      .card .ttl {
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .card .icon {
+        width: 170px;
+        height: 170px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card .ring {
+        position: absolute;
+        inset: -3px;
+        border-radius: 32px;
+        border: 5px solid var(--gold);
+        opacity: 0;
+      }
+      #qr-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 16px);
+        gap: 3px;
+        padding: 10px;
+        background: var(--cream);
+        border-radius: 12px;
+      }
+      #qr-grid i {
+        width: 16px;
+        height: 16px;
+        background: var(--ink);
+        border-radius: 2px;
+      }
+      #qr-grid i.o { background: transparent; }
+      #qr-scan {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 8px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--teal);
+        box-shadow: 0 0 18px var(--teal);
+      }
+      #coin-count {
+        position: absolute;
+        bottom: -22px;
+        right: -46px;
+        padding: 2px 14px;
+        border-radius: 999px;
+        background: var(--ink);
+        font-size: 36px;
+        font-weight: 900;
+        color: var(--gold);
+      }
+      #lvl-num {
+        font-size: 60px;
+        font-weight: 900;
+        color: var(--teal);
+      }
+      #lvl-bar {
+        width: 200px;
+        height: 22px;
+        border-radius: 11px;
+        background: #ffffff22;
+        overflow: hidden;
+        margin-top: 14px;
+      }
+      #lvl-fill {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--teal), var(--gold));
+        transform-origin: left center;
+        transform: scaleX(0.25);
+      }
+      #caption {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 150px;
+        height: 90px;
+      }
+      .cap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 60px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        opacity: 0;
+      }
+
+      /* ---------- Scene 4: slogan ---------- */
+      .block {
+        display: inline-block;
+        padding: 18px 46px 26px;
+        border-radius: 28px;
+        font-size: 104px;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        opacity: 0;
+      }
+
+      /* ---------- Scene 5: penutup ---------- */
+      .step {
+        position: absolute;
+        bottom: 0;
+        width: 120px;
+        border-radius: 20px 20px 0 0;
+      }
+      #cta {
+        position: absolute;
+        left: 120px;
+        bottom: 110px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 26px 40px;
+        border-radius: 28px;
+        background: var(--cream);
+        color: var(--ink);
+        opacity: 0;
+      }
+      #cta .big {
+        font-size: 46px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+      }
+      #cta .url {
+        font-size: 26px;
+        font-weight: 700;
+        color: #4a3fa0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Latar dan elemen terapung -->
+      <div id="bg" class="clip" data-start="0" data-duration="30" data-track-index="0">
+        <svg class="float" id="f1" style="left: 140px; top: 220px" width="90" height="90" viewBox="0 0 24 24"><path fill="#ffc83d" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg>
+        <svg class="float" id="f2" style="left: 1660px; top: 180px" width="70" height="70" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#2dd4bf"/></svg>
+        <svg class="float" id="f3" style="left: 1540px; top: 820px" width="110" height="110" viewBox="0 0 24 24"><path fill="#6c4cf1" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 21l1.6-7L2 9.2l7.1-.6z"/></svg>
+        <svg class="float" id="f4" style="left: 260px; top: 860px" width="60" height="60" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc83d"/></svg>
+        <svg class="float" id="f5" style="left: 960px; top: 140px" width="40" height="40" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ff6b6b"/></svg>
+      </div>
+
+      <!-- ===== Scene 1: Hook (0 – 7.5s) ===== -->
+      <div id="s1" class="clip" data-start="0" data-duration="7.5" data-track-index="1">
+        <div class="line" id="s1-l1" style="top: 340px; font-size: 104px">
+          <span class="w">Bayangkan</span><span class="w">sebuah</span><span class="w gold-text">kelas…</span>
+        </div>
+        <div class="line" id="s1-l2" style="top: 530px; font-size: 92px">
+          <span class="w">setiap</span><span class="w">usaha</span><span class="w">murid</span><span class="w hl gold" style="color: var(--ink)"><b class="bar"></b>dihargai</span>
+        </div>
+        <div class="line" id="s1-l3" style="top: 680px; font-size: 92px">
+          <span class="w">&amp;</span><span class="w">setiap</span><span class="w">pencapaian</span><span class="w hl coral" style="color: var(--ink)"><b class="bar"></b>diraikan</span>
+        </div>
+        <div id="confetti"></div>
+      </div>
+
+      <!-- ===== Scene 2: Perkenal KelasQuest (7.5 – 15.0s) ===== -->
+      <div id="s2" class="clip" data-start="7.5" data-duration="7.5" data-track-index="1">
+        <div class="line" id="s2-kicker" style="top: 200px; font-size: 40px; letter-spacing: 0.32em; color: var(--muted); opacity: 0">MEMPERKENALKAN</div>
+        <div class="line" style="top: 270px">
+          <div class="logo">
+            <svg id="s2-badge" width="200" height="200" viewBox="0 0 100 100">
+              <path d="M50 4 L90 18 V50 C90 74 72 90 50 97 C28 90 10 74 10 50 V18 Z" fill="#6c4cf1" stroke="#ffc83d" stroke-width="5"/>
+              <path fill="#ffc83d" d="M50 26l6.6 13.4 14.8 2.2-10.7 10.4 2.5 14.7L50 59.8l-13.2 6.9 2.5-14.7-10.7-10.4 14.8-2.2z"/>
+            </svg>
+            <div class="wordmark" id="s2-word" style="font-size: 190px">
+              <span>K</span><span>e</span><span>l</span><span>a</span><span>s</span><span class="gold-text">Q</span><span class="gold-text">u</span><span class="gold-text">e</span><span class="gold-text">s</span><span class="gold-text">t</span>
+            </div>
+          </div>
+        </div>
+        <div class="line" id="s2-tag" style="top: 560px; font-size: 60px">
+          <span class="w">Aplikasi</span><span class="w hl teal" style="color: var(--ink)"><b class="bar"></b>ganjaran digital</span><span class="w">interaktif</span>
+        </div>
+        <div class="line" id="s2-fun" style="top: 720px; font-size: 76px">
+          <span class="w">Belajar jadi lebih</span><span class="w hl gold" style="color: var(--ink)"><b class="bar"></b>menyeronokkan</span>
+        </div>
+      </div>
+
+      <!-- ===== Scene 3: Ciri-ciri (15.0 – 22.2s) ===== -->
+      <div id="s3" class="clip" data-start="15" data-duration="7.2" data-track-index="1">
+        <div class="line" id="s3-head" style="top: 130px; font-size: 44px; letter-spacing: 0.28em; color: var(--muted); opacity: 0">CARA IA BERFUNGSI</div>
+        <div id="cards">
+          <div class="card" id="c-qr">
+            <div class="ring"></div>
+            <div class="icon"><div id="qr-grid"></div><div id="qr-scan"></div></div>
+            <div class="ttl">Imbas QR</div>
+          </div>
+          <div class="card" id="c-coin">
+            <div class="ring"></div>
+            <div class="icon">
+              <svg id="coin" width="150" height="150" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#ffc83d" stroke="#e09b12" stroke-width="7"/><text x="50" y="64" text-anchor="middle" font-family="Inter" font-weight="900" font-size="42" fill="#8a5a00">S</text></svg>
+              <div id="coin-count">+0</div>
+            </div>
+            <div class="ttl">Syiling</div>
+          </div>
+          <div class="card" id="c-badge">
+            <div class="ring"></div>
+            <div class="icon">
+              <svg id="medal" width="150" height="170" viewBox="0 0 100 114"><path d="M30 0h14l10 30H40z" fill="#6c4cf1"/><path d="M70 0H56L46 30h14z" fill="#2dd4bf"/><circle cx="50" cy="70" r="38" fill="#ffc83d" stroke="#e09b12" stroke-width="6"/><path fill="#fff8ec" d="M50 48l6 12.2 13.4 2-9.7 9.4 2.3 13.4L50 78.7l-12 6.3 2.3-13.4-9.7-9.4 13.4-2z"/></svg>
+            </div>
+            <div class="ttl">Lencana</div>
+          </div>
+          <div class="card" id="c-lvl">
+            <div class="ring"></div>
+            <div class="icon" style="flex-direction: column">
+              <div id="lvl-num">LVL 4</div>
+              <div id="lvl-bar"><div id="lvl-fill"></div></div>
+            </div>
+            <div class="ttl">Naik Level</div>
+          </div>
+          <div class="card" id="c-gift">
+            <div class="ring"></div>
+            <div class="icon">
+              <svg width="150" height="150" viewBox="0 0 100 100">
+                <rect x="14" y="44" width="72" height="50" rx="6" fill="#ff6b6b"/>
+                <rect x="45" y="44" width="10" height="50" fill="#ffc83d"/>
+                <g id="gift-lid"><rect x="8" y="30" width="84" height="18" rx="5" fill="#ff8a8a"/><rect x="45" y="30" width="10" height="18" fill="#ffc83d"/><path d="M50 30 C40 10 24 16 32 28 Z M50 30 C60 10 76 16 68 28 Z" fill="#ffc83d"/></g>
+              </svg>
+            </div>
+            <div class="ttl">Hadiah</div>
+          </div>
+        </div>
+        <div id="caption">
+          <div class="cap" id="cap1">Dengan <span class="hl teal" style="color: var(--ink)"><b class="bar"></b>imbasan QR</span></div>
+          <div class="cap" id="cap2">murid kumpul <span class="hl gold" style="color: var(--ink)"><b class="bar"></b>syiling</span></div>
+          <div class="cap" id="cap3">dapat <span class="hl gold" style="color: var(--ink)"><b class="bar"></b>lencana pencapaian</span></div>
+          <div class="cap" id="cap4">dan <span class="hl teal" style="color: var(--ink)"><b class="bar"></b>naik level</span></div>
+          <div class="cap" id="cap5">tebus <span class="hl coral" style="color: var(--ink)"><b class="bar"></b>hadiah menarik</span></div>
+        </div>
+      </div>
+
+      <!-- ===== Scene 4: Slogan (22.1 – 25.9s) ===== -->
+      <div id="s4" class="clip" data-start="22.1" data-duration="3.8" data-track-index="1">
+        <div class="line" style="top: 270px">
+          <div class="logo" id="s4-logo">
+            <svg width="150" height="150" viewBox="0 0 100 100">
+              <path d="M50 4 L90 18 V50 C90 74 72 90 50 97 C28 90 10 74 10 50 V18 Z" fill="#6c4cf1" stroke="#ffc83d" stroke-width="5"/>
+              <path fill="#ffc83d" d="M50 26l6.6 13.4 14.8 2.2-10.7 10.4 2.5 14.7L50 59.8l-13.2 6.9 2.5-14.7-10.7-10.4 14.8-2.2z"/>
+            </svg>
+            <div class="wordmark" style="font-size: 150px">Kelas<span class="gold-text">Quest</span></div>
+          </div>
+        </div>
+        <div class="line" style="top: 600px; display: flex; justify-content: center; gap: 36px">
+          <div class="block" id="b1" style="background: var(--purple); color: var(--cream)">Belajar.</div>
+          <div class="block" id="b2" style="background: var(--gold); color: var(--ink)">Kumpul.</div>
+          <div class="block" id="b3" style="background: var(--teal); color: var(--ink)">Naik Level.</div>
+        </div>
+      </div>
+
+      <!-- ===== Scene 5: Penutup (25.85 – 30s) ===== -->
+      <div id="s5" class="clip" data-start="25.85" data-duration="4.15" data-track-index="1">
+        <div id="stairs" style="position: absolute; right: 140px; bottom: 0; width: 700px; height: 760px">
+          <div class="step" style="left: 0; height: 140px; background: #6c4cf155"></div>
+          <div class="step" style="left: 145px; height: 260px; background: #6c4cf188"></div>
+          <div class="step" style="left: 290px; height: 380px; background: #6c4cf1bb"></div>
+          <div class="step" style="left: 435px; height: 500px; background: var(--purple)"></div>
+          <div class="step" style="left: 580px; height: 620px; background: var(--gold)"></div>
+          <svg id="trophy" style="position: absolute; left: 560px; top: 0; opacity: 0" width="160" height="140" viewBox="0 0 24 21"><path fill="#ffc83d" d="M12 0l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 15.3 5.8 19l1.6-7L2 7.2l7.1-.6z"/></svg>
+        </div>
+        <div class="line" id="s5-l1" style="top: 260px; left: 120px; right: auto; text-align: left; font-size: 84px">
+          <span class="w">Kerana setiap</span><span class="w">usaha kecil</span>
+        </div>
+        <div class="line" id="s5-l2" style="top: 380px; left: 120px; right: auto; text-align: left; font-size: 84px">
+          <span class="w">membawa kepada</span>
+        </div>
+        <div class="line" id="s5-l3" style="top: 500px; left: 120px; right: auto; text-align: left; font-size: 120px">
+          <span class="w hl gold" style="color: var(--ink)"><b class="bar"></b>kejayaan besar.</span>
+        </div>
+        <div id="cta">
+          <svg width="90" height="90" viewBox="0 0 100 100">
+            <path d="M50 4 L90 18 V50 C90 74 72 90 50 97 C28 90 10 74 10 50 V18 Z" fill="#6c4cf1" stroke="#ffc83d" stroke-width="5"/>
+            <path fill="#ffc83d" d="M50 26l6.6 13.4 14.8 2.2-10.7 10.4 2.5 14.7L50 59.8l-13.2 6.9 2.5-14.7-10.7-10.4 14.8-2.2z"/>
+          </svg>
+          <div>
+            <div class="big">Cuba KelasQuest sekarang</div>
+            <div class="url">kelasquest-personal.eizniejoe.chatgpt.site</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lapisan atas: bar XP dan watermark -->
+      <div id="hud" class="clip" data-start="0" data-duration="30" data-track-index="2">
+        <div id="xp"><div id="xp-fill"></div></div>
+        <div id="xp-label">XP</div>
+        <div id="watermark">Kelas<span class="gold-text">Quest</span></div>
+      </div>
+
+      <!-- Selingan: jalur warna menyapu antara scene -->
+      <div id="wipes" class="clip" data-start="0" data-duration="30" data-track-index="3">
+        <div class="wipe" id="wp1" style="background: var(--purple)"></div>
+        <div class="wipe" id="wp2" style="background: var(--gold)"></div>
+        <div class="wipe" id="wp3" style="background: var(--teal)"></div>
+        <div id="flash" class="clip" style="background: var(--cream); opacity: 0"></div>
+      </div>
+
+      <audio id="vo" src="assets/voiceover.wav" data-start="0" data-duration="29.3" data-track-index="4"></audio>
+    </div>
+
+    <script>
+      // Masa (saat) diselaraskan dengan assets/voiceover.wav — rujuk SCRIPT.md
+      const tl = gsap.timeline({ paused: true });
+      const q = (s) => document.querySelector(s);
+      const qa = (s) => Array.from(document.querySelectorAll(s));
+
+      // Rawak deterministik (LCG) untuk confetti dan corak QR
+      let seed = 7;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+
+      const pop = (el, t, from = { y: 40, scale: 0.9 }) =>
+        tl.fromTo(el, { opacity: 0, ...from }, { opacity: 1, y: 0, x: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, t);
+      const sweep = (hlEl, t, dur = 0.35) =>
+        tl.fromTo(hlEl.querySelector(".bar"), { scaleX: 0 }, { scaleX: 1, duration: dur, ease: "power3.out" }, t);
+      const wipe = (t) => {
+        ["#wp1", "#wp2", "#wp3"].forEach((id, i) => {
+          tl.fromTo(id, { x: -1400, skewX: -16 }, { x: 2400, skewX: -16, duration: 0.7, ease: "power2.inOut" }, t + i * 0.06);
+        });
+      };
+
+      // ---------- Lapisan tetap ----------
+      tl.set(".wipe", { x: -1400, skewX: -16 }, 0);
+      tl.fromTo("#xp-fill", { scaleX: 0 }, { scaleX: 1, duration: 30, ease: "none" }, 0);
+      [["#f1", 40, -30], ["#f2", -50, 40], ["#f3", 30, -60], ["#f4", -40, -40], ["#f5", 20, 50]].forEach(([id, x, y]) => {
+        tl.to(id, { x, y, rotation: x * 2, duration: 30, ease: "sine.inOut" }, 0);
+      });
+      tl.to("#watermark", { opacity: 0.85, duration: 0.4 }, 15.3);
+      tl.to("#watermark", { opacity: 0, duration: 0.3 }, 22.0);
+
+      // ---------- Scene 1: Hook ----------
+      const l1 = qa("#s1-l1 .w");
+      pop(l1[0], 0.12); pop(l1[1], 0.8); pop(l1[2], 1.15, { y: 0, scale: 1.6 });
+      tl.to("#s1-l1", { y: -60, scale: 0.85, duration: 0.5, ease: "power2.out" }, 2.6);
+      const l2 = qa("#s1-l2 .w");
+      tl.set("#s1-l2", { y: -60 }, 0);
+      pop(l2[0], 2.77); pop(l2[1], 3.3); pop(l2[2], 3.85);
+      pop(l2[3], 4.55, { y: 0, scale: 1.4 }); sweep(l2[3], 4.6);
+      const l3 = qa("#s1-l3 .w");
+      tl.set("#s1-l3", { y: -60 }, 0);
+      pop(l3[0], 5.41); pop(l3[1], 5.6); pop(l3[2], 6.0);
+      pop(l3[3], 6.74, { y: 0, scale: 1.4 }); sweep(l3[3], 6.8);
+
+      // Confetti untuk "diraikan"
+      const conf = q("#confetti");
+      const colors = ["#ffc83d", "#2dd4bf", "#ff6b6b", "#6c4cf1", "#fff8ec"];
+      for (let i = 0; i < 36; i++) {
+        const d = document.createElement("div");
+        d.style.cssText = `position:absolute;left:1180px;top:750px;width:${14 + rnd() * 12}px;height:${8 + rnd() * 8}px;background:${colors[i % 5]};border-radius:3px;opacity:0`;
+        conf.appendChild(d);
+        const ang = rnd() * Math.PI * 2, dist = 220 + rnd() * 380;
+        tl.fromTo(d, { opacity: 1, x: 0, y: 0, rotation: 0 },
+          { x: Math.cos(ang) * dist, y: Math.sin(ang) * dist * 0.7 + 140, rotation: rnd() * 720 - 360, duration: 1.0, ease: "power2.out", immediateRender: false }, 6.85);
+        tl.to(d, { opacity: 0, duration: 0.3 }, 7.55);
+      }
+
+      // Selingan 1
+      wipe(7.15);
+
+      // ---------- Scene 2: Perkenal ----------
+      tl.fromTo("#s2-kicker", { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 7.62);
+      tl.fromTo("#s2-badge", { scale: 0, rotation: -120 }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, 7.85);
+      tl.fromTo("#s2-word span", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)", stagger: 0.04 }, 7.95);
+      tl.to("#s2-badge", { rotation: 8, duration: 0.25, yoyo: true, repeat: 3, ease: "sine.inOut" }, 8.7);
+      const tag = qa("#s2-tag .w");
+      pop(tag[0], 8.97); pop(tag[1], 9.5); sweep(tag[1], 9.7, 0.45); pop(tag[2], 10.25);
+      const fun = qa("#s2-fun .w");
+      pop(fun[0], 12.4); pop(fun[1], 13.1, { y: 0, scale: 1.5 }); sweep(fun[1], 13.15, 0.45);
+      tl.to(fun[1], { rotation: -3, duration: 0.12, yoyo: true, repeat: 5 }, 13.7);
+
+      // Selingan 2
+      wipe(14.6);
+
+      // ---------- Scene 3: Ciri-ciri ----------
+      const grid = q("#qr-grid");
+      for (let i = 0; i < 81; i++) {
+        const r = Math.floor(i / 9), c = i % 9;
+        const finder = (r < 3 && c < 3) || (r < 3 && c > 5) || (r > 5 && c < 3);
+        const cell = document.createElement("i");
+        if (!finder && rnd() > 0.55) cell.className = "o";
+        grid.appendChild(cell);
+      }
+      tl.fromTo("#s3-head", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 }, 15.1);
+
+      const cards = ["#c-qr", "#c-coin", "#c-badge", "#c-lvl", "#c-gift"];
+      const caps = ["#cap1", "#cap2", "#cap3", "#cap4", "#cap5"];
+      const beats = [15.15, 16.55, 18.04, 19.6, 20.55];
+      beats.forEach((t, i) => {
+        tl.fromTo(cards[i], { opacity: 0, y: 120, rotation: i % 2 ? 6 : -6 }, { opacity: 1, y: 0, rotation: 0, duration: 0.45, ease: "back.out(1.7)" }, t);
+        tl.fromTo(cards[i] + " .ring", { opacity: 0 }, { opacity: 1, duration: 0.2 }, t + 0.1);
+        tl.to(cards[i], { scale: 1.08, duration: 0.3, ease: "power2.out" }, t + 0.1);
+        const end = i < 4 ? beats[i + 1] : 22.1;
+        if (i < 4) {
+          tl.to(cards[i] + " .ring", { opacity: 0, duration: 0.2 }, end);
+          tl.to(cards[i], { scale: 1, duration: 0.3 }, end);
+        }
+        tl.fromTo(caps[i], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25 }, t);
+        sweep(q(caps[i] + " .hl"), t + 0.15);
+        if (i < 4) tl.to(caps[i], { opacity: 0, y: -30, duration: 0.2 }, end - 0.05);
+      });
+
+      // Detail animasi setiap kad
+      tl.fromTo("#qr-scan", { y: 0 }, { y: 150, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 3 }, 15.4);
+      const coin = { v: 0 };
+      tl.fromTo("#coin", { rotationY: 0 }, { rotationY: 720, duration: 1.2, ease: "power2.out" }, 16.6);
+      tl.to(coin, { v: 120, duration: 1.2, ease: "power2.out", onUpdate: () => (q("#coin-count").textContent = "+" + Math.round(coin.v)) }, 16.7);
+      tl.fromTo("#medal", { rotation: -25, scale: 0.6 }, { rotation: 0, scale: 1, duration: 0.7, ease: "elastic.out(1, 0.5)" }, 18.15);
+      tl.fromTo("#lvl-fill", { scaleX: 0.25 }, { scaleX: 1, duration: 0.6, ease: "power2.in" }, 19.7);
+      tl.call(() => (q("#lvl-num").textContent = "LVL 4"), null, 19.0);
+      tl.call(() => (q("#lvl-num").textContent = "LVL 5"), null, 20.32);
+      tl.fromTo("#lvl-num", { scale: 1 }, { scale: 1.35, duration: 0.15, yoyo: true, repeat: 1 }, 20.32);
+      tl.fromTo("#gift-lid", { y: 0, rotation: 0 }, { y: -18, rotation: -12, transformOrigin: "20% 100%", duration: 0.35, ease: "back.out(3)" }, 21.1);
+
+      // Selingan 3: kilat putih
+      tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.9, duration: 0.08 }, 22.02);
+      tl.to("#flash", { opacity: 0, duration: 0.35 }, 22.12);
+
+      // ---------- Scene 4: Slogan ----------
+      tl.fromTo("#s4-logo", { scale: 1.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "power4.out" }, 22.15);
+      tl.fromTo("#s4", { x: 0 }, { x: 12, duration: 0.05, yoyo: true, repeat: 5 }, 22.45);
+      tl.fromTo("#b1", { opacity: 0, x: -500 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(1.6)" }, 23.5);
+      tl.fromTo("#b2", { opacity: 0, y: -400 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.6)" }, 24.38);
+      tl.fromTo("#b3", { opacity: 0, x: 500 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(1.6)" }, 24.95);
+      tl.to(["#b1", "#b2", "#b3"], { scale: 1.06, duration: 0.15, yoyo: true, repeat: 1 }, 25.3);
+
+      // ---------- Scene 5: Penutup ----------
+      wipe(25.55);
+      pop(qa("#s5-l1 .w")[0], 25.98, { x: -60 }); pop(qa("#s5-l1 .w")[1], 26.6, { x: -60 });
+      pop(qa("#s5-l2 .w")[0], 27.76, { x: -60 });
+      const big = q("#s5-l3 .w");
+      pop(big, 28.2, { y: 0, scale: 1.4 }); sweep(big, 28.3, 0.4);
+      tl.fromTo(".step", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.5, ease: "back.out(1.4)", stagger: 0.38 }, 26.0);
+      tl.fromTo("#trophy", { opacity: 0, y: 60, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2.5)" }, 28.25);
+      tl.fromTo("#cta", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 28.75);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
