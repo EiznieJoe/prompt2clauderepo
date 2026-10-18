@@ -2,6 +2,3 @@ node_modules/
 renders/
 .hyperframes/
 *.log
-
-# Dijana semasa build Netlify dari environment variable
-rmt/assets/config.js
