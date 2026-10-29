@@ -25,3 +25,7 @@ npm run render   # render ke renders/
 ```
 
 Warna utama ada dalam `:root` di `index.html` (`--purple`, `--gold`, `--teal`, `--coral`). Tukar di situ kalau nak ikut warna brand sebenar.
+
+## Projek lain dalam repo ini
+
+- [`delima-champions-2026/`](delima-champions-2026/) — video promo 60s DELIMa Champions 2026, SK Rugading, Tuaran (projek HyperFrames berasingan, lihat README di dalamnya).

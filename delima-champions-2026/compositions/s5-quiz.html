@@ -1,0 +1,276 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s5-wipe {
+      position: absolute;
+      inset: 0;
+    }
+    #s5-title { left: 0; right: 0; top: 88px; text-align: center; font-size: 112px; }
+    #s5-sub { left: 0; right: 0; top: 226px; text-align: center; font-size: 54px; }
+    .s5-w { display: inline-block; }
+    #s5-cone {
+      position: absolute;
+      left: 460px;
+      top: 330px;
+      width: 1000px;
+      height: 620px;
+      background: linear-gradient(0deg, rgba(110, 220, 255, 0.45), rgba(110, 220, 255, 0));
+      clip-path: polygon(38% 100%, 62% 100%, 100% 0, 0 0);
+    }
+    #s5-projector {
+      position: absolute;
+      left: 600px;
+      top: 900px;
+      width: 720px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(200, 245, 255, 0.95), rgba(60, 160, 255, 0.5) 55%, rgba(60, 160, 255, 0));
+    }
+    #s5-stack {
+      position: absolute;
+      inset: 0;
+      perspective: 1600px;
+      perspective-origin: 960px 590px;
+    }
+    .s5-card {
+      position: absolute;
+      left: 520px;
+      top: 340px;
+      width: 880px;
+      height: 500px;
+      border-radius: 34px;
+      background: linear-gradient(165deg, rgba(240, 248, 255, 0.97), rgba(196, 220, 255, 0.95));
+      box-shadow:
+        inset 0 0 0 3px rgba(90, 200, 255, 0.9),
+        0 0 50px rgba(80, 190, 255, 0.55),
+        0 30px 60px rgba(0, 0, 30, 0.5);
+    }
+    #s5-back2 { opacity: 0.55; }
+    #s5-back1 { opacity: 0.8; }
+    #s5-chip {
+      position: absolute;
+      left: 40px;
+      top: 32px;
+      width: 136px;
+      height: 56px;
+    }
+    #s5-chip .t-title {
+      left: 0;
+      right: 0;
+      top: 11px;
+      text-align: center;
+      font-size: 30px;
+      color: #ffe27a;
+    }
+    #s5-dots {
+      position: absolute;
+      right: 44px;
+      top: 50px;
+      display: flex;
+      gap: 12px;
+    }
+    .s5-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(20, 50, 150, 0.25);
+      box-shadow: inset 0 0 0 2px rgba(20, 50, 150, 0.45);
+    }
+    .s5-qline {
+      position: absolute;
+      left: 40px;
+      height: 24px;
+      border-radius: 12px;
+      background: rgba(14, 40, 130, 0.78);
+    }
+    .s5-opt {
+      position: absolute;
+      width: 384px;
+      height: 98px;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: inset 0 0 0 3px rgba(40, 110, 230, 0.55), 0 8px 20px rgba(10, 30, 100, 0.25);
+    }
+    .s5-opt .s5-ok-bg {
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #8affc2, #1fcf74 60%, #0f9c55);
+      box-shadow: 0 0 40px rgba(50, 255, 140, 0.8);
+      opacity: 0;
+    }
+    .s5-badge {
+      position: absolute;
+      left: 18px;
+      top: 19px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #2f6bff, #0b2fa8);
+    }
+    .s5-badge .t-title {
+      left: 0;
+      right: 0;
+      top: 12px;
+      text-align: center;
+      font-size: 34px;
+      color: #ffffff;
+    }
+    .s5-oline {
+      position: absolute;
+      left: 98px;
+      top: 38px;
+      height: 22px;
+      border-radius: 11px;
+      background: rgba(14, 40, 130, 0.35);
+    }
+    #s5-check {
+      position: absolute;
+      left: 18px;
+      top: 19px;
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+    }
+    #s5-ring {
+      position: absolute;
+      inset: -10px;
+      border-radius: 32px;
+      box-shadow: 0 0 0 5px #ffd34a, 0 0 30px rgba(255, 210, 70, 0.9);
+      opacity: 0;
+    }
+    #s5-white {
+      position: absolute;
+      inset: 0;
+      border-radius: 34px;
+      background: #f6f9ff;
+      opacity: 0;
+    }
+    #s5-burst {
+      position: absolute;
+      left: 1168px;
+      top: 613px;
+    }
+    .s5-star {
+      position: absolute;
+      left: -22px;
+      top: -22px;
+      width: 44px;
+      height: 44px;
+    }
+    #s5-streak {
+      position: absolute;
+      left: -160px;
+      top: -40px;
+      width: 320px;
+      height: 1160px;
+      background: linear-gradient(90deg, rgba(255, 210, 70, 0), rgba(255, 236, 160, 0.95) 45%, #ffffff 50%, rgba(255, 236, 160, 0.95) 55%, rgba(255, 210, 70, 0));
+      filter: blur(6px);
+    }
+  </style>
+  <div id="root" data-composition-id="s5-quiz" data-width="1920" data-height="1080">
+    <div id="s5-wipe">
+      <div id="s5-all">
+        <div id="s5-cone"></div>
+        <div id="s5-projector"></div>
+        <div id="s5-title" class="t-hero depth">
+          <span class="white-fill s5-w">DELIMa</span> <span class="gold-fill s5-w">FUN</span> <span class="gold-fill s5-w">QUIZ</span>
+        </div>
+        <div id="s5-sub" class="t-sub depth-soft"><span class="white-fill" id="s5-subtext">10 SOALAN • UJI MINDA ANDA!</span></div>
+
+        <div id="s5-stack">
+          <div class="s5-card" id="s5-back2"></div>
+          <div class="s5-card" id="s5-back1"></div>
+          <div class="s5-card" id="s5-front">
+            <div id="s5-chip" class="pill"><div class="t-title">1/10</div></div>
+            <div id="s5-dots">
+              <i class="s5-dot" id="s5-dot1"></i><i class="s5-dot"></i><i class="s5-dot"></i><i class="s5-dot"></i><i class="s5-dot"></i>
+              <i class="s5-dot"></i><i class="s5-dot"></i><i class="s5-dot"></i><i class="s5-dot"></i><i class="s5-dot"></i>
+            </div>
+            <!-- soalan & pilihan: bentuk konsep sahaja -->
+            <div class="s5-qline" id="s5-q1" style="top: 118px; width: 760px"></div>
+            <div class="s5-qline" id="s5-q2" style="top: 160px; width: 500px"></div>
+            <div class="s5-opt" id="s5-oA" style="left: 40px; top: 224px">
+              <div class="s5-badge"><div class="t-title">A</div></div><div class="s5-oline" style="width: 230px"></div>
+            </div>
+            <div class="s5-opt" id="s5-oB" style="left: 456px; top: 224px">
+              <div class="s5-ok-bg"></div>
+              <div id="s5-ring"></div>
+              <div class="s5-badge"><div class="t-title">B</div></div><div class="s5-oline" style="width: 200px"></div>
+              <svg id="s5-check" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#ffffff" /><path d="M16 31l9 9 19-20" fill="none" stroke="#0f9c55" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </div>
+            <div class="s5-opt" id="s5-oC" style="left: 40px; top: 344px">
+              <div class="s5-badge"><div class="t-title">C</div></div><div class="s5-oline" style="width: 250px"></div>
+            </div>
+            <div class="s5-opt" id="s5-oD" style="left: 456px; top: 344px">
+              <div class="s5-badge"><div class="t-title">D</div></div><div class="s5-oline" style="width: 180px"></div>
+            </div>
+            <div id="s5-white"></div>
+          </div>
+        </div>
+        <div id="s5-burst"></div>
+      </div>
+    </div>
+    <div id="s5-streak"></div>
+  </div>
+  <script>
+    (function () {
+      const STAR = '<svg viewBox="0 0 64 64"><path d="m32 4 8 18 20 2-15 13 4 20-17-10-17 10 4-20L4 24l20-2z" fill="#ffd54a" stroke="#fff6c8" stroke-width="3"/></svg>';
+      const burst = document.getElementById("s5-burst");
+      const stars = [];
+      for (let i = 0; i < 14; i++) {
+        const d = document.createElement("div");
+        d.className = "s5-star";
+        d.innerHTML = STAR;
+        burst.appendChild(d);
+        const a = (i / 14) * Math.PI * 2 + 0.2;
+        const r = 170 + (i % 3) * 60;
+        stars.push({ el: d, x: Math.cos(a) * r, y: Math.sin(a) * r * 0.8, s: 0.7 + (i % 4) * 0.18 });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      // masuk: jalur cahaya menyapu dan mendedahkan scene (28.6-29.1 s)
+      tl.fromTo("#s5-streak", { x: 0, opacity: 1 }, { x: 1920, duration: 0.5, ease: "power1.inOut" }, 0);
+      tl.to("#s5-streak", { opacity: 0, duration: 0.1 }, 0.5);
+      tl.fromTo("#s5-wipe", { clipPath: "inset(0px 100% 0px 0px)" }, { clipPath: "inset(0px 0% 0px 0px)", duration: 0.5, ease: "power1.inOut" }, 0);
+      tl.fromTo("#s5-title .s5-w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.1, ease: "power3.out" }, 0.45);
+      tl.fromTo("#s5-subtext", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 1.0);
+      tl.fromTo(["#s5-cone", "#s5-projector"], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 0.3);
+      // kad kuiz meluncur masuk
+      [["#s5-back2", 0.45, -50, -24, -6], ["#s5-back1", 0.58, 40, -12, 4], ["#s5-front", 0.7, 0, 0, 0]].forEach(function (c) {
+        tl.fromTo(c[0], { x: 1000, y: c[3], rotateY: -40, rotate: c[4] + 8 },
+          { x: c[2], y: c[3], rotateY: 0, rotate: c[4], duration: 0.85, ease: "expo.out" }, c[1]);
+      });
+      // 30.52 s pilihan jawapan muncul
+      tl.fromTo([".s5-qline"], { opacity: 0, scaleX: 0.3, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.4, stagger: 0.1, ease: "power3.out" }, 1.5);
+      tl.fromTo(".s5-opt", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.08, ease: "back.out(1.6)" }, 1.9);
+      // 32.5 s pilih B, 33.05 s betul
+      tl.fromTo("#s5-ring", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, 3.9);
+      tl.to("#s5-oB .s5-ok-bg", { opacity: 1, duration: 0.15, ease: "power2.out" }, 4.45);
+      tl.to("#s5-oB", { scale: 1.08, duration: 0.15, ease: "power2.out" }, 4.45);
+      tl.to("#s5-oB", { scale: 1, duration: 0.45, ease: "power3.out" }, 4.6);
+      tl.fromTo("#s5-check", { opacity: 0, scale: 0.4, rotate: -30 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.35, ease: "back.out(2)" }, 4.47);
+      tl.to("#s5-oB .s5-oline", { backgroundColor: "rgba(255,255,255,0.85)", duration: 0.15 }, 4.45);
+      tl.to("#s5-dot1", { backgroundColor: "#ffc21f", boxShadow: "0 0 12px rgba(255,200,50,0.9)", duration: 0.2 }, 4.5);
+      stars.forEach(function (s, i) {
+        tl.fromTo(s.el, { x: 0, y: 0, scale: 0.2, opacity: 0, rotate: 0 },
+          { x: s.x, y: s.y, scale: s.s, opacity: 1, rotate: 90 + i * 20, duration: 0.6, ease: "expo.out" }, 4.55);
+        tl.to(s.el, { opacity: 0, scale: s.s * 0.6, duration: 0.5, ease: "power2.in" }, 5.25 + (i % 4) * 0.05);
+      });
+      // keluar: kad depan menjadi kanvas kosong Poster Digital (36.3-37.2 s)
+      tl.to(["#s5-title", "#s5-sub", "#s5-back1", "#s5-back2", "#s5-cone", "#s5-projector"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power2.in" }, 7.7);
+      tl.to("#s5-white", { opacity: 1, duration: 0.3, ease: "power2.inOut" }, 7.7);
+      tl.to("#s5-front", { scale: 2.32, y: -50, duration: 0.6, ease: "power2.inOut" }, 7.95);
+      window.__timelines["s5-quiz"] = tl;
+    })();
+  </script>
+</template>

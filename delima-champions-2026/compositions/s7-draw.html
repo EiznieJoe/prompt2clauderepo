@@ -1,0 +1,261 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s7-iris {
+      position: absolute;
+      inset: 0;
+    }
+    #s7-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1100px 620px at 50% 46%, #1b4fd8 0%, rgba(27, 79, 216, 0) 70%),
+        linear-gradient(180deg, #040a2a 0%, #071a66 55%, #040a2a 100%);
+    }
+    #s7-title { left: 0; right: 0; top: 86px; text-align: center; font-size: 120px; }
+    #s7-sub { left: 0; right: 0; top: 226px; text-align: center; font-size: 56px; }
+    .s7-w { display: inline-block; }
+    #s7-platform {
+      position: absolute;
+      left: 300px;
+      top: 620px;
+      width: 1320px;
+      height: 240px;
+    }
+    .s7-box {
+      position: absolute;
+      top: 360px;
+      width: 360px;
+      height: 400px;
+    }
+    #s7-boxL { left: 520px; }
+    #s7-boxR { left: 1040px; }
+    .s7-box svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    .s7-beam {
+      position: absolute;
+      left: 30px;
+      top: -560px;
+      width: 300px;
+      height: 700px;
+      background: linear-gradient(0deg, rgba(255, 236, 160, 0.95), rgba(255, 210, 80, 0.35) 55%, rgba(255, 210, 80, 0));
+      clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
+      transform-origin: 50% 100%;
+    }
+    .s7-seam {
+      position: absolute;
+      left: 20px;
+      top: 138px;
+      width: 320px;
+      height: 30px;
+      border-radius: 15px;
+      background: radial-gradient(closest-side, rgba(255, 245, 190, 1), rgba(255, 200, 60, 0));
+    }
+    #s7-chips {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 846px;
+      height: 80px;
+    }
+    .s7-chip {
+      position: absolute;
+      top: 0;
+      height: 80px;
+    }
+    #s7-chip1 { left: 392px; width: 560px; }
+    #s7-chip2 { left: 1030px; width: 500px; }
+    .s7-chip .t-sub {
+      left: 82px;
+      top: 20px;
+      font-size: 36px;
+      color: #ffffff;
+    }
+    .s7-chip svg {
+      position: absolute;
+      left: 18px;
+      top: 14px;
+      width: 52px;
+      height: 52px;
+    }
+    #s7-plus { left: 952px; width: 78px; top: 846px; text-align: center; font-size: 56px; color: #ffd34a; }
+    #s7-confetti {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s7-cf {
+      position: absolute;
+      width: 16px;
+      height: 26px;
+      margin: -13px 0 0 -8px;
+      border-radius: 3px;
+    }
+    #s7-flood {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 52%, #ffffff 0%, #fff4c8 35%, #ffd56a 75%, #f2ad22 100%);
+      clip-path: circle(0px at 960px 520px);
+    }
+  </style>
+  <div id="root" data-composition-id="s7-draw" data-width="1920" data-height="1080">
+    <div id="s7-iris">
+      <div id="s7-bg"></div>
+      <div id="s7-title" class="t-hero depth">
+        <span class="white-fill s7-w">GRAND</span> <span class="gold-fill s7-w">LUCKY</span> <span class="gold-fill s7-w">DRAW</span>
+      </div>
+      <div id="s7-sub" class="t-sub depth-soft"><span class="white-fill" id="s7-q">SIAPA BAKAL BERTUAH?</span></div>
+
+      <svg id="s7-platform" viewBox="0 0 1320 240" width="1320" height="240">
+        <defs>
+          <radialGradient id="s7-pg">
+            <stop offset="0" stop-color="#d8f8ff" stop-opacity="0.95" />
+            <stop offset="0.5" stop-color="#3b95ff" stop-opacity="0.5" />
+            <stop offset="1" stop-color="#0b2fa8" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="660" cy="120" rx="650" ry="115" fill="url(#s7-pg)" />
+        <ellipse cx="660" cy="120" rx="560" ry="88" fill="none" stroke="#7fe6ff" stroke-width="6" />
+        <ellipse cx="660" cy="120" rx="470" ry="70" fill="none" stroke="#ffd24a" stroke-width="4" stroke-dasharray="26 12" />
+      </svg>
+
+      <!-- dua kotak hadiah: tiada hadiah khusus ditunjukkan -->
+      <div class="s7-box" id="s7-boxL">
+        <div class="s7-beam" id="s7-beamL"></div>
+        <div class="s7-seam" id="s7-seamL"></div>
+        <svg viewBox="0 0 360 400" width="360" height="400">
+          <defs>
+            <linearGradient id="s7-blue" x1="0" x2="1"><stop offset="0" stop-color="#0b2fa8" /><stop offset="0.5" stop-color="#2f6bff" /><stop offset="1" stop-color="#0a2585" /></linearGradient>
+            <linearGradient id="s7-gold" x1="0" x2="1"><stop offset="0" stop-color="#c47a00" /><stop offset="0.45" stop-color="#ffe680" /><stop offset="1" stop-color="#d08a00" /></linearGradient>
+            <linearGradient id="s7-red" x1="0" x2="1"><stop offset="0" stop-color="#9c0f1f" /><stop offset="0.5" stop-color="#ff4a5a" /><stop offset="1" stop-color="#a01222" /></linearGradient>
+          </defs>
+          <g class="s7-body">
+            <rect x="30" y="160" width="300" height="230" rx="10" fill="url(#s7-blue)" />
+            <rect x="152" y="160" width="56" height="230" fill="url(#s7-gold)" />
+            <rect x="30" y="160" width="300" height="16" fill="#061650" opacity="0.5" />
+          </g>
+          <g class="s7-lid" id="s7-lidL">
+            <path d="M150 92 C 110 40, 60 60, 92 100 C 110 120, 150 104, 172 100z" fill="url(#s7-gold)" />
+            <path d="M210 92 C 250 40, 300 60, 268 100 C 250 120, 210 104, 188 100z" fill="url(#s7-gold)" />
+            <rect x="12" y="98" width="336" height="74" rx="12" fill="url(#s7-blue)" />
+            <rect x="148" y="98" width="64" height="74" fill="url(#s7-gold)" />
+            <circle cx="180" cy="100" r="18" fill="#ffe680" />
+          </g>
+        </svg>
+      </div>
+      <div class="s7-box" id="s7-boxR">
+        <div class="s7-beam" id="s7-beamR"></div>
+        <div class="s7-seam" id="s7-seamR"></div>
+        <svg viewBox="0 0 360 400" width="360" height="400">
+          <g class="s7-body">
+            <rect x="30" y="160" width="300" height="230" rx="10" fill="url(#s7-gold)" />
+            <rect x="152" y="160" width="56" height="230" fill="url(#s7-red)" />
+            <rect x="30" y="160" width="300" height="16" fill="#6b3e05" opacity="0.45" />
+          </g>
+          <g class="s7-lid" id="s7-lidR">
+            <path d="M150 92 C 110 40, 60 60, 92 100 C 110 120, 150 104, 172 100z" fill="url(#s7-red)" />
+            <path d="M210 92 C 250 40, 300 60, 268 100 C 250 120, 210 104, 188 100z" fill="url(#s7-red)" />
+            <rect x="12" y="98" width="336" height="74" rx="12" fill="url(#s7-gold)" />
+            <rect x="148" y="98" width="64" height="74" fill="url(#s7-red)" />
+            <circle cx="180" cy="100" r="18" fill="#ff7a86" />
+          </g>
+        </svg>
+      </div>
+      <div id="s7-confetti"></div>
+
+      <div id="s7-chips">
+        <div class="s7-chip pill" id="s7-chip1">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="26" fill="#1fcf74" /><path d="M13 27l9 9 17-19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <div class="t-sub">Log masuk disahkan</div>
+        </div>
+        <div class="s7-chip pill" id="s7-chip2">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="26" fill="#1fcf74" /><path d="M13 27l9 9 17-19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          <div class="t-sub">Siapkan Fun Quiz</div>
+        </div>
+      </div>
+      <div id="s7-plus" class="t-hero">+</div>
+    </div>
+    <div id="s7-flood"></div>
+  </div>
+  <script>
+    (function () {
+      function hash(i, s) {
+        const x = Math.sin(i * 12.9898 + s * 78.233) * 43758.5453;
+        return x - Math.floor(x);
+      }
+      const COLORS = ["#ffd34a", "#ffffff", "#3fe0ff", "#ff4a5a", "#ffe680", "#2f6bff"];
+      const cf = document.getElementById("s7-confetti");
+      const pieces = [];
+      for (let i = 0; i < 72; i++) {
+        const d = document.createElement("div");
+        d.className = "s7-cf";
+        d.style.background = COLORS[i % COLORS.length];
+        cf.appendChild(d);
+        const fromL = i % 2 === 0;
+        pieces.push({
+          el: d,
+          x0: fromL ? 700 : 1220,
+          y0: 470,
+          dx: (hash(i, 1) - 0.5) * 900 + (fromL ? -80 : 80),
+          up: 260 + hash(i, 2) * 380,
+          fall: 380 + hash(i, 3) * 300,
+          rot: (hash(i, 4) - 0.5) * 1080,
+          d: hash(i, 5) * 0.12,
+        });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      // masuk: iris dari tengah poster (44.6-45.05 s)
+      tl.fromTo("#s7-iris", { clipPath: "circle(0px at 540px 540px)" }, { clipPath: "circle(2300px at 540px 540px)", duration: 0.45, ease: "power3.in" }, 0);
+      tl.to("#s7-bg", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 0.65);
+      tl.fromTo("#s7-title .s7-w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.1, ease: "power3.out" }, 0.45);
+      tl.fromTo("#s7-platform", { opacity: 0, scaleX: 0.7 }, { opacity: 1, scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.5);
+      // kotak jatuh dan mendarat (45.8 s)
+      tl.fromTo("#s7-boxL", { y: -620 }, { y: 0, duration: 0.32, ease: "power2.in" }, 0.88);
+      tl.fromTo("#s7-boxR", { y: -620 }, { y: 0, duration: 0.32, ease: "power2.in" }, 0.96);
+      tl.fromTo("#s7-boxL svg", { scaleY: 0.9, scaleX: 1.05, transformOrigin: "50% 100%" }, { scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2.2)" }, 1.2);
+      tl.fromTo("#s7-boxR svg", { scaleY: 0.9, scaleX: 1.05, transformOrigin: "50% 100%" }, { scaleY: 1, scaleX: 1, duration: 0.45, ease: "back.out(2.2)" }, 1.28);
+      // syarat penyertaan
+      tl.fromTo("#s7-chip1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 1.1);
+      tl.fromTo("#s7-plus", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 2.0);
+      tl.fromTo("#s7-chip2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.1);
+      tl.fromTo("#s7-q", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 3.4);
+      // jangkaan: cahaya bocor di celah penutup, kotak bergegar (seiring snare roll)
+      tl.fromTo([".s7-seam"], { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 2.4, ease: "power2.in" }, 4.8);
+      tl.fromTo(".s7-beam", { opacity: 0, scaleY: 0 }, { opacity: 0, scaleY: 0, duration: 0.01 }, 0);
+      for (let k = 0; k < 12; k++) {
+        const a = (k % 2 ? -1 : 1) * (1 + k * 0.22);
+        tl.to("#s7-boxL svg", { rotate: a, duration: 0.11, ease: "sine.inOut" }, 5.88 + k * 0.11);
+        tl.to("#s7-boxR svg", { rotate: -a, duration: 0.11, ease: "sine.inOut" }, 5.88 + k * 0.11);
+      }
+      tl.to([".s7-box svg"], { rotate: 0, duration: 0.06 }, 7.2);
+      // 51.84 s penutup terbuka dengan cahaya emas + konfeti
+      const OPEN = 7.24;
+      tl.to("#s7-lidL", { y: -120, x: -170, rotate: -38, svgOrigin: "180 135", duration: 0.9, ease: "expo.out" }, OPEN);
+      tl.to("#s7-lidR", { y: -120, x: 170, rotate: 38, svgOrigin: "180 135", duration: 0.9, ease: "expo.out" }, OPEN);
+      tl.to(".s7-beam", { opacity: 1, scaleY: 1, duration: 0.35, ease: "expo.out" }, OPEN);
+      tl.to(".s7-seam", { opacity: 0, duration: 0.2 }, OPEN);
+      pieces.forEach(function (p) {
+        tl.fromTo(p.el, { x: p.x0, opacity: 0, rotate: 0 }, { x: p.x0 + p.dx, opacity: 1, rotate: p.rot, duration: 1.3, ease: "power2.out" }, OPEN + p.d);
+        tl.fromTo(p.el, { y: p.y0 }, { y: p.y0 - p.up, duration: 0.5, ease: "power2.out" }, OPEN + p.d);
+        tl.to(p.el, { y: p.y0 - p.up + p.fall, duration: 0.8, ease: "power1.in" }, OPEN + p.d + 0.5);
+      });
+      // 52.45-52.85 s limpahan cahaya ke penutup
+      tl.to("#s7-flood", { clipPath: "circle(1400px at 960px 520px)", duration: 0.42, ease: "power3.in" }, 7.85);
+      window.__timelines["s7-draw"] = tl;
+    })();
+  </script>
+</template>

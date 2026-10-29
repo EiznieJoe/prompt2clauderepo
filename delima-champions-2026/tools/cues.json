@@ -1,0 +1,268 @@
+{
+  "_note": "Masa dalam saat (global). 'at' = bila fail mula main; 'trim' = mula dari saat ini dalam fail. Puncak setiap SFX diukur dengan tools/mix_audio.py --peaks; 'hit' = bila puncak itu jatuh, iaitu peristiwa visual yang disegerakkan.",
+  "music": {
+    "file": "assets/audio/stems/music.wav",
+    "gain_db": -3.0,
+    "duck_db": -11.0
+  },
+  "vo": [
+    {
+      "file": "assets/audio/vo-panduan/vo1.wav",
+      "at": 0.5
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo2.wav",
+      "at": 6.0
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo3.wav",
+      "at": 12.5
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo4.wav",
+      "at": 20.5
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo5.wav",
+      "at": 29.6
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo6.wav",
+      "at": 37.6
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo7.wav",
+      "at": 45.5
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo8.wav",
+      "at": 53.4
+    }
+  ],
+  "sfx": [
+    {
+      "file": "whoosh-cinematic.mp3",
+      "at": 0.0,
+      "trim": 1.5,
+      "gain_db": -13,
+      "hit": "1.05 portal terbuka"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 1.12,
+      "gain_db": -14,
+      "hit": "1.15 cahaya portal"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 2.97,
+      "gain_db": -16,
+      "hit": "3.0 sapuan cahaya emas pada lencana sekolah"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 4.66,
+      "gain_db": -9,
+      "hit": "4.83 kamera masuk portal"
+    },
+    {
+      "file": "impact-bass-1.mp3",
+      "at": 5.69,
+      "gain_db": -17,
+      "hit": "5.76 logo DELIMa muncul (downbeat muzik)"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 11.3,
+      "gain_db": -11,
+      "hit": "11.47 lencana terbang ke panel login"
+    },
+    {
+      "file": "key-press.mp3",
+      "at": 12.95,
+      "gain_db": -18,
+      "hit": "titik kata laluan"
+    },
+    {
+      "file": "key-press.mp3",
+      "at": 13.25,
+      "gain_db": -20,
+      "hit": "titik kata laluan"
+    },
+    {
+      "file": "key-press.mp3",
+      "at": 13.55,
+      "gain_db": -18,
+      "hit": "titik kata laluan"
+    },
+    {
+      "file": "click-soft.mp3",
+      "at": 14.35,
+      "gain_db": -10,
+      "hit": "14.4 butang LOG MASUK ditekan"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 14.53,
+      "gain_db": -12,
+      "hit": "14.65 tanda berjaya"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 15.83,
+      "gain_db": -11,
+      "hit": "15.86 tiket emas muncul"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 16.75,
+      "gain_db": -10,
+      "hit": "16.9 tiket meluncur"
+    },
+    {
+      "file": "ping.mp3",
+      "at": 17.52,
+      "gain_db": -13,
+      "hit": "17.85 tiket masuk kebuk cabutan"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 19.55,
+      "gain_db": -11,
+      "hit": "19.72 peralihan ke Class Battle"
+    },
+    {
+      "file": "riser.mp3",
+      "at": 21.3,
+      "gain_db": -17,
+      "hit": "24.34 bar penyertaan sampai ke trofi"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 24.36,
+      "gain_db": -14,
+      "hit": "24.4 trofi bersinar"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 28.55,
+      "gain_db": -10,
+      "hit": "28.72 peralihan ke Fun Quiz"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 29.2,
+      "gain_db": -15,
+      "hit": "29.37 kad kuiz masuk"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 30.4,
+      "gain_db": -16,
+      "hit": "30.52 pilihan jawapan"
+    },
+    {
+      "file": "ping.mp3",
+      "at": 32.72,
+      "gain_db": -11,
+      "hit": "33.05 jawapan betul menyala"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 33.12,
+      "gain_db": -10,
+      "hit": "33.15 letupan bintang"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 36.55,
+      "gain_db": -10,
+      "hit": "36.72 peralihan ke Poster Digital"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 38.48,
+      "gain_db": -15,
+      "hit": "38.6 bentuk 1"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 38.88,
+      "gain_db": -17,
+      "hit": "39.0 bentuk 2"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 39.28,
+      "gain_db": -15,
+      "hit": "39.4 bentuk 3"
+    },
+    {
+      "file": "whoosh-cinematic.mp3",
+      "at": 38.5,
+      "trim": 1.8,
+      "gain_db": -13,
+      "hit": "39.25 kanvas berubah"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 41.07,
+      "gain_db": -10,
+      "hit": "41.1 poster siap"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 44.55,
+      "gain_db": -11,
+      "hit": "44.72 peralihan ke Grand Lucky Draw"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 45.68,
+      "gain_db": -13,
+      "hit": "45.8 kotak hadiah mendarat"
+    },
+    {
+      "file": "impact-bass-2.mp3",
+      "at": 49.77,
+      "gain_db": -22,
+      "hit": "51.84 penutup kotak terbuka (downbeat finale)"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 51.86,
+      "gain_db": -8,
+      "hit": "51.9 cahaya + konfeti"
+    },
+    {
+      "file": "whoosh.mp3",
+      "at": 52.62,
+      "gain_db": -10,
+      "hit": "52.79 limpahan cahaya ke penutup"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 55.3,
+      "gain_db": -15,
+      "hit": "55.42 LOGIN"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 56.12,
+      "gain_db": -15,
+      "hit": "56.24 PLAY"
+    },
+    {
+      "file": "pop.mp3",
+      "at": 56.8,
+      "gain_db": -13,
+      "hit": "56.92 WIN!"
+    },
+    {
+      "file": "sparkle.mp3",
+      "at": 57.58,
+      "gain_db": -11,
+      "hit": "57.6 kord penamat"
+    }
+  ]
+}

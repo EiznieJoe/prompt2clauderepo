@@ -1,0 +1,186 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s4-wipe {
+      position: absolute;
+      inset: 0;
+    }
+    #s4-all {
+      position: absolute;
+      inset: 0;
+    }
+    #s4-title { left: 0; right: 0; top: 92px; text-align: center; font-size: 104px; }
+    #s4-sub { left: 0; right: 0; top: 222px; text-align: center; font-size: 54px; }
+    #s4-note { left: 0; right: 0; top: 922px; text-align: center; font-size: 36px; color: #bfe6ff; }
+    .s4-w { display: inline-block; }
+    #s4-trophy {
+      position: absolute;
+      left: 860px;
+      top: 300px;
+      width: 200px;
+      height: 196px;
+    }
+    #s4-trophy-glow {
+      position: absolute;
+      left: 760px;
+      top: 220px;
+      width: 400px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255, 226, 120, 0.9), rgba(255, 190, 40, 0.25) 55%, rgba(255, 190, 40, 0));
+    }
+    #s4-goal {
+      position: absolute;
+      left: 470px;
+      top: 498px;
+      width: 980px;
+      height: 4px;
+      background: repeating-linear-gradient(90deg, rgba(255, 214, 90, 0.95) 0 22px, rgba(0, 0, 0, 0) 22px 36px);
+      box-shadow: 0 0 16px rgba(255, 200, 60, 0.7);
+    }
+    .s4-col {
+      position: absolute;
+      top: 500px;
+      width: 130px;
+      height: 340px;
+      border-radius: 22px 22px 8px 8px;
+      overflow: hidden;
+      background: rgba(10, 35, 130, 0.45);
+      box-shadow: inset 0 0 0 2px rgba(120, 200, 255, 0.4);
+    }
+    .s4-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 130px;
+      height: 340px;
+      border-radius: 22px 22px 0 0;
+      background: linear-gradient(180deg, #e9fbff 0px, #6fe3ff 14px, #2d9bff 90px, #1546d8 100%);
+      box-shadow: 0 0 30px rgba(80, 200, 255, 0.8);
+    }
+    .s4-fill.lead {
+      background: linear-gradient(180deg, #fffbe0 0px, #ffe27a 14px, #ffc21f 90px, #e8920a 100%);
+    }
+    .s4-label {
+      position: absolute;
+      top: 858px;
+      width: 150px;
+      height: 50px;
+      margin-left: -10px;
+    }
+    .s4-label .t-small {
+      left: 0;
+      right: 0;
+      top: 9px;
+      text-align: center;
+      font-size: 28px;
+      color: #ffffff;
+    }
+    #s4-beam {
+      position: absolute;
+      left: 925px;
+      top: 470px;
+      width: 70px;
+      height: 40px;
+      background: linear-gradient(0deg, rgba(255, 220, 110, 0.9), rgba(255, 220, 110, 0));
+      filter: blur(6px);
+      transform-origin: 50% 100%;
+    }
+  </style>
+  <div id="root" data-composition-id="s4-battle" data-width="1920" data-height="1080">
+    <div id="s4-wipe">
+      <div id="s4-all">
+        <div id="s4-trophy-glow" data-layout-ignore></div>
+        <div id="s4-title" class="t-hero depth">
+          <span class="white-fill s4-w">DELIMa</span> <span class="gold-fill s4-w">CLASS</span> <span class="gold-fill s4-w">BATTLE</span>
+        </div>
+        <div id="s4-sub" class="t-sub depth-soft"><span class="white-fill" id="s4-q">KELAS MANA PALING HEBAT?</span></div>
+
+        <svg id="s4-trophy" viewBox="0 0 200 196">
+          <defs>
+            <linearGradient id="s4-tg" x1="0" x2="1">
+              <stop offset="0" stop-color="#b86f00" />
+              <stop offset="0.35" stop-color="#ffe680" />
+              <stop offset="0.6" stop-color="#ffc21f" />
+              <stop offset="1" stop-color="#a65e00" />
+            </linearGradient>
+          </defs>
+          <path d="M52 22h96v34c0 34-22 58-48 58S52 90 52 56z" fill="url(#s4-tg)" />
+          <path d="M52 34H24c0 30 14 46 34 50M148 34h28c0 30-14 46-34 50" fill="none" stroke="url(#s4-tg)" stroke-width="10" stroke-linecap="round" />
+          <rect x="88" y="112" width="24" height="34" fill="url(#s4-tg)" />
+          <path d="M60 146h80l10 26H50z" fill="url(#s4-tg)" />
+          <rect x="40" y="172" width="120" height="20" rx="5" fill="#0b2fa8" stroke="#ffcc3a" stroke-width="4" />
+          <path d="m100 40 7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" fill="#fff6c8" />
+          <path d="M66 30c2 26 10 44 24 56" fill="none" stroke="#fffbe8" stroke-width="5" stroke-linecap="round" opacity="0.7" />
+        </svg>
+        <div id="s4-goal"></div>
+        <div id="s4-beam"></div>
+
+        <div class="s4-col" id="s4-c0" style="left: 515px"><div class="s4-fill"></div></div>
+        <div class="s4-col" id="s4-c1" style="left: 705px"><div class="s4-fill"></div></div>
+        <div class="s4-col" id="s4-c2" style="left: 895px"><div class="s4-fill lead"></div></div>
+        <div class="s4-col" id="s4-c3" style="left: 1085px"><div class="s4-fill"></div></div>
+        <div class="s4-col" id="s4-c4" style="left: 1275px"><div class="s4-fill"></div></div>
+
+        <!-- kad kelas: label konsep sahaja, bukan keputusan sebenar -->
+        <div class="s4-label pill" style="left: 515px"><div class="t-small">KELAS A</div></div>
+        <div class="s4-label pill" style="left: 705px"><div class="t-small">KELAS B</div></div>
+        <div class="s4-label pill" style="left: 895px"><div class="t-small">KELAS C</div></div>
+        <div class="s4-label pill" style="left: 1085px"><div class="t-small">KELAS D</div></div>
+        <div class="s4-label pill" style="left: 1275px"><div class="t-small">KELAS E</div></div>
+
+        <div id="s4-note" class="t-small depth-soft">Berdasarkan peratus penyertaan kelas</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const H = 340;
+      // masuk: sapuan dari kanan (19.85-20.35 s)
+      tl.fromTo("#s4-all", { x: 760, filter: "blur(18px)", opacity: 0 }, { x: 0, filter: "blur(0px)", opacity: 1, duration: 0.5, ease: "power3.out" }, 0.25);
+      tl.fromTo("#s4-title .s4-w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.1, ease: "power3.out" }, 0.55);
+      tl.fromTo("#s4-q", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.05);
+      tl.fromTo(".s4-label", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.06, ease: "power3.out" }, 0.7);
+      tl.fromTo([".s4-col", "#s4-goal"], { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.04, ease: "power2.out" }, 0.8);
+      tl.fromTo("#s4-trophy", { opacity: 0, y: -30, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 1.1);
+      tl.fromTo("#s4-trophy-glow", { opacity: 0 }, { opacity: 0.35, duration: 0.6, ease: "power2.out" }, 1.1);
+      tl.fromTo("#s4-note", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.0);
+      tl.fromTo("#s4-beam", { opacity: 0, scaleY: 0 }, { opacity: 0, scaleY: 0, duration: 0.01 }, 0);
+
+      // bar penyertaan naik dalam tiga gelombang (konsep, bukan data sebenar)
+      const waves = [
+        [1.4, [0.22, 0.3, 0.26, 0.18, 0.28]],
+        [3.0, [0.52, 0.46, 0.62, 0.4, 0.56]],
+        [4.0, [0.74, 0.82, 1.0, 0.66, 0.86]],
+      ];
+      for (let c = 0; c < 5; c++) {
+        const sel = "#s4-c" + c + " .s4-fill";
+        tl.fromTo(sel, { y: H }, { y: H, duration: 0.01 }, 0);
+        waves.forEach(function (w, i) {
+          tl.to(sel, { y: H * (1 - w[1][c]), duration: i === 2 ? 0.74 : 0.9, ease: i === 2 ? "power2.inOut" : "power3.out" }, w[0] + c * 0.05);
+        });
+      }
+      // 24.34 s: bar sampai garisan sasaran, trofi bersinar
+      tl.to("#s4-trophy-glow", { opacity: 1, scale: 1.15, duration: 0.35, ease: "power2.out" }, 4.74);
+      tl.to("#s4-trophy-glow", { opacity: 0.7, scale: 1, duration: 1.2, ease: "power2.out" }, 5.1);
+      tl.to("#s4-trophy", { scale: 1.08, duration: 0.18, ease: "power2.out" }, 4.74);
+      tl.to("#s4-trophy", { scale: 1, duration: 0.5, ease: "power3.out" }, 4.92);
+      tl.to("#s4-beam", { opacity: 1, scaleY: 1, duration: 0.3, ease: "power2.out" }, 4.74);
+      tl.to("#s4-beam", { opacity: 0.6, duration: 1.0, ease: "power2.out" }, 5.05);
+
+      // keluar: tersapu oleh jalur cahaya scene 5 (28.6-29.1 s)
+      tl.fromTo("#s4-wipe", { clipPath: "inset(0px 0px 0px 0%)" }, { clipPath: "inset(0px 0px 0px 100%)", duration: 0.5, ease: "power1.inOut" }, 9.0);
+      window.__timelines["s4-battle"] = tl;
+    })();
+  </script>
+</template>

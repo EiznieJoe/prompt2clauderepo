@@ -1,0 +1,201 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #w-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(1100px 620px at 50% 46%, #1b4fd8 0%, rgba(27, 79, 216, 0) 70%),
+        radial-gradient(900px 700px at 8% 0%, #0f2f9e 0%, rgba(15, 47, 158, 0) 70%),
+        radial-gradient(900px 700px at 100% 100%, #0a3aa8 0%, rgba(10, 58, 168, 0) 70%),
+        linear-gradient(180deg, #040a2a 0%, #071a66 55%, #040a2a 100%);
+    }
+    #w-glow {
+      position: absolute;
+      left: 460px;
+      top: 140px;
+      width: 1000px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(90, 200, 255, 0.35), rgba(90, 200, 255, 0));
+    }
+    #w-stars {
+      position: absolute;
+      inset: -80px;
+    }
+    .w-star {
+      position: absolute;
+      border-radius: 50%;
+      background: #cfe9ff;
+      box-shadow: 0 0 6px #7fd0ff;
+    }
+    #w-stage {
+      position: absolute;
+      inset: 0;
+      perspective: 900px;
+      perspective-origin: 50% 40%;
+    }
+    #w-floor {
+      position: absolute;
+      left: -1100px;
+      top: 640px;
+      width: 4120px;
+      height: 2600px;
+      transform-origin: 50% 0;
+      background:
+        repeating-linear-gradient(90deg, rgba(80, 200, 255, 0.5) 0 3px, rgba(0, 0, 0, 0) 3px 120px),
+        repeating-linear-gradient(0deg, rgba(80, 200, 255, 0.5) 0 3px, rgba(0, 0, 0, 0) 3px 120px);
+      -webkit-mask-image: radial-gradient(ellipse 50% 60% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0) 75%);
+      mask-image: radial-gradient(ellipse 50% 60% at 50% 0%, #000 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0) 75%);
+    }
+    #w-horizon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 610px;
+      height: 80px;
+      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(120, 220, 255, 0.55), rgba(120, 220, 255, 0));
+    }
+    .w-icon {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 32px;
+      background: linear-gradient(160deg, rgba(70, 140, 255, 0.55), rgba(15, 45, 160, 0.6));
+      box-shadow:
+        inset 0 0 0 2px rgba(150, 215, 255, 0.7),
+        0 0 30px rgba(60, 170, 255, 0.5);
+    }
+    .w-icon svg {
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      width: 90px;
+      height: 90px;
+    }
+    #w-trails {
+      position: absolute;
+      inset: 0;
+    }
+    #w-trails path {
+      fill: none;
+      stroke-linecap: round;
+    }
+    #w-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 75% 70% at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(2, 4, 20, 0.65) 100%);
+    }
+  </style>
+  <div id="root" data-composition-id="world" data-width="1920" data-height="1080">
+    <div id="w-bg"></div>
+    <div id="w-glow"></div>
+    <div id="w-stars"></div>
+    <div id="w-stage">
+      <div id="w-horizon"></div>
+      <div id="w-floor"></div>
+    </div>
+
+    <!-- Laluan cahaya yang menyambung scene -->
+    <svg id="w-trails" viewBox="0 0 1920 1080" width="1920" height="1080">
+      <defs>
+        <linearGradient id="w-tg-gold" x1="0" x2="1">
+          <stop offset="0" stop-color="#ffcc3a" stop-opacity="0" />
+          <stop offset="0.5" stop-color="#fff1b0" />
+          <stop offset="1" stop-color="#ffcc3a" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="w-tg-cyan" x1="0" x2="1">
+          <stop offset="0" stop-color="#3fe0ff" stop-opacity="0" />
+          <stop offset="0.5" stop-color="#c8f6ff" />
+          <stop offset="1" stop-color="#3fe0ff" stop-opacity="0" />
+        </linearGradient>
+        <filter id="w-blur" x="-10%" y="-50%" width="120%" height="200%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+      </defs>
+      <g id="w-trail-a">
+        <path d="M-200 820 C 400 640, 900 980, 2120 520" stroke="url(#w-tg-cyan)" stroke-width="22" filter="url(#w-blur)" opacity="0.7" />
+        <path d="M-200 820 C 400 640, 900 980, 2120 520" stroke="url(#w-tg-cyan)" stroke-width="5" />
+      </g>
+      <g id="w-trail-b">
+        <path d="M-200 260 C 500 420, 1300 80, 2120 330" stroke="url(#w-tg-gold)" stroke-width="22" filter="url(#w-blur)" opacity="0.7" />
+        <path d="M-200 260 C 500 420, 1300 80, 2120 330" stroke="url(#w-tg-gold)" stroke-width="5" />
+      </g>
+    </svg>
+
+    <!-- Ikon pembelajaran terapung (jauh, di tepi bingkai) -->
+    <div id="w-icons">
+      <div class="w-icon" id="w-ic-book" style="left: 70px; top: 120px">
+        <svg viewBox="0 0 64 64"><path d="M6 14c9-3 18-2 26 4 8-6 17-7 26-4v36c-9-3-18-2-26 4-8-6-17-7-26-4z" fill="#eaf6ff" /><path d="M32 18v36" stroke="#1f5fe0" stroke-width="3" /></svg>
+      </div>
+      <div class="w-icon" id="w-ic-laptop" style="left: 1690px; top: 150px">
+        <svg viewBox="0 0 64 64"><rect x="10" y="12" width="44" height="30" rx="4" fill="#eaf6ff" /><rect x="14" y="16" width="36" height="22" rx="2" fill="#3aa6ff" /><path d="M4 48h56l-5 6H9z" fill="#eaf6ff" /></svg>
+      </div>
+      <div class="w-icon" id="w-ic-cap" style="left: 1720px; top: 760px">
+        <svg viewBox="0 0 64 64"><path d="M32 12 2 26l30 14 30-14z" fill="#eaf6ff" /><path d="M14 33v12c10 7 26 7 36 0V33L32 41z" fill="#cfe4ff" /><path d="M56 28v16" stroke="#ffcc3a" stroke-width="3" /></svg>
+      </div>
+      <div class="w-icon" id="w-ic-bulb" style="left: 60px; top: 790px">
+        <svg viewBox="0 0 64 64"><path d="M32 6a18 18 0 0 0-10 33c2 2 3 4 3 7h14c0-3 1-5 3-7A18 18 0 0 0 32 6z" fill="#fff2b0" /><rect x="25" y="49" width="14" height="5" rx="2" fill="#eaf6ff" /><rect x="27" y="56" width="10" height="4" rx="2" fill="#eaf6ff" /></svg>
+      </div>
+      <div class="w-icon" id="w-ic-star" style="left: 300px; top: 470px; transform: scale(0.6)">
+        <svg viewBox="0 0 64 64"><path d="m32 6 7.6 16.4L58 24.5 44.6 37l3.4 18L32 46l-16 9 3.4-18L6 24.5l18.4-2.1z" fill="#ffd54a" /></svg>
+      </div>
+      <div class="w-icon" id="w-ic-globe" style="left: 1520px; top: 470px; transform: scale(0.6)">
+        <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="none" stroke="#eaf6ff" stroke-width="4" /><ellipse cx="32" cy="32" rx="10" ry="24" fill="none" stroke="#eaf6ff" stroke-width="3" /><path d="M8 32h48M12 20h40M12 44h40" stroke="#eaf6ff" stroke-width="3" /></svg>
+      </div>
+    </div>
+    <div id="w-vignette"></div>
+  </div>
+  <script>
+    (function () {
+      // bintang: kedudukan daripada hash berbiji (deterministik)
+      function hash(i, s) {
+        const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
+        return x - Math.floor(x);
+      }
+      const stars = document.getElementById("w-stars");
+      for (let i = 0; i < 140; i++) {
+        const d = document.createElement("div");
+        d.className = "w-star";
+        const r = 1 + hash(i, 3) * 2.6;
+        d.style.left = (hash(i, 1) * 2080).toFixed(1) + "px";
+        d.style.top = (hash(i, 2) * 1240).toFixed(1) + "px";
+        d.style.width = d.style.height = r.toFixed(1) + "px";
+        d.style.opacity = (0.25 + hash(i, 4) * 0.6).toFixed(2);
+        stars.appendChild(d);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      // lantai grid bergerak ke hadapan sepanjang filem (kamera terbang)
+      tl.fromTo("#w-floor", { rotateX: 80, backgroundPosition: "0px 0px, 0px 0px" },
+        { rotateX: 80, backgroundPosition: "0px 0px, 0px 3600px", duration: 60, ease: "none" }, 0);
+      tl.fromTo("#w-stars", { x: 0, y: 0 }, { x: -60, y: -30, duration: 60, ease: "none" }, 0);
+      tl.fromTo("#w-icons", { x: 0 }, { x: -40, duration: 60, ease: "none" }, 0);
+
+      // pembukaan: dunia gelap menyala apabila portal terbuka
+      tl.fromTo("#w-bg", { opacity: 0.35 }, { opacity: 1, duration: 1.4, ease: "power2.out" }, 0.8);
+      tl.fromTo("#w-glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 0.9);
+      tl.fromTo("#w-icons", { opacity: 0 }, { opacity: 0.55, duration: 1.2, ease: "power2.out" }, 1.2);
+
+      // setiap peralihan: lantai memecut + laluan cahaya menyapu
+      const cuts = [4.55, 11.3, 19.55, 28.55, 36.55, 44.55, 52.55];
+      cuts.forEach(function (c, i) {
+        const g = i % 2 ? "#w-trail-a" : "#w-trail-b";
+        tl.fromTo(g, { opacity: 0, x: -1400 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.in" }, c - 0.2);
+        tl.to(g, { opacity: 0, x: 900, duration: 0.5, ease: "power2.out" }, c + 0.25);
+        tl.fromTo("#w-stage", { y: 0 }, { y: -26, duration: 0.3, ease: "power2.in" }, c - 0.1);
+        tl.to("#w-stage", { y: 0, duration: 0.7, ease: "power3.out" }, c + 0.2);
+        tl.fromTo("#w-icons", { scale: 1 }, { scale: 1.06, duration: 0.35, ease: "power2.in" }, c - 0.15);
+        tl.to("#w-icons", { scale: 1, duration: 0.8, ease: "power3.out" }, c + 0.2);
+      });
+      tl.set("#w-trail-a", { opacity: 0 }, 0);
+      tl.set("#w-trail-b", { opacity: 0 }, 0);
+
+      window.__timelines["world"] = tl;
+    })();
+  </script>
+</template>

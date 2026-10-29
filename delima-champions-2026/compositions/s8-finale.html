@@ -1,0 +1,170 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s8-halo {
+      position: absolute;
+      left: 280px;
+      top: 20px;
+      width: 880px;
+      height: 760px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(120, 210, 255, 0.55), rgba(40, 120, 255, 0.2) 60%, rgba(40, 120, 255, 0));
+    }
+    #s8-platform {
+      position: absolute;
+      left: 380px;
+      top: 610px;
+      width: 680px;
+      height: 150px;
+    }
+    #s8-stage {
+      position: absolute;
+      inset: 0;
+      perspective: 1700px;
+      perspective-origin: 960px 420px;
+    }
+    #s8-delima {
+      left: 433px;
+      top: 116px;
+      width: 573px;
+      height: 560px;
+    }
+    #s8-school {
+      left: 1192px;
+      top: 168px;
+      width: 275px;
+      height: 300px;
+    }
+    #s8-name { left: 1030px; width: 600px; top: 494px; text-align: center; font-size: 42px; }
+    #s8-years { left: 1030px; width: 600px; top: 566px; text-align: center; font-size: 58px; }
+    #s8-pill {
+      left: 340px;
+      top: 724px;
+      width: 1240px;
+      height: 124px;
+    }
+    #s8-cta {
+      left: 0;
+      right: 0;
+      top: 742px;
+      text-align: center;
+      font-size: 86px;
+    }
+    .s8-k { display: inline-block; }
+    .s8-dot {
+      display: inline-block;
+      color: #5fe3ff;
+      margin: 0 0.18em;
+      filter: drop-shadow(0 0 10px rgba(80, 220, 255, 0.9));
+    }
+    #s8-wait { left: 0; right: 0; top: 884px; text-align: center; font-size: 48px; }
+    #s8-flood {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at 50% 52%, #ffffff 0%, #fff4c8 35%, #ffd56a 75%, #f2ad22 100%);
+    }
+  </style>
+  <div id="root" data-composition-id="s8-finale" data-width="1920" data-height="1080">
+    <div id="s8-halo"></div>
+    <svg id="s8-platform" viewBox="0 0 680 150" width="680" height="150">
+      <defs>
+        <radialGradient id="s8-pg">
+          <stop offset="0" stop-color="#d8f8ff" stop-opacity="0.95" />
+          <stop offset="0.5" stop-color="#3b95ff" stop-opacity="0.5" />
+          <stop offset="1" stop-color="#0b2fa8" stop-opacity="0" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="340" cy="75" rx="335" ry="70" fill="url(#s8-pg)" />
+      <ellipse cx="340" cy="75" rx="280" ry="52" fill="none" stroke="#7fe6ff" stroke-width="5" />
+      <ellipse cx="340" cy="75" rx="220" ry="40" fill="none" stroke="#ffd24a" stroke-width="4" stroke-dasharray="22 10" />
+    </svg>
+    <div id="s8-stage">
+      <div id="s8-delima" class="l3d delima" data-logo="delima" data-depth="40">
+        <img class="front" src="assets/logos/delima.png" alt="Lambang DELIMa Champions" />
+        <img class="bevel" src="assets/logos/delima-bevel.png" alt="" />
+      </div>
+      <div id="s8-school" class="l3d sekolah" data-logo="sekolah" data-depth="18">
+        <img class="front" src="assets/logos/sekolah.png" alt="Lencana SK Rugading, Tuaran" />
+        <img class="bevel" src="assets/logos/sekolah-bevel.png" alt="" />
+      </div>
+    </div>
+    <div id="s8-name" class="t-title depth-soft"><span class="white-fill" id="s8-name-t">SK RUGADING, TUARAN</span></div>
+    <div id="s8-years" class="t-title depth"><span class="gold-fill" id="s8-years-t">MURID TAHUN 1–6</span></div>
+    <div id="s8-pill" class="pill"></div>
+    <div id="s8-cta" class="t-hero depth">
+      <span class="gold-fill s8-k" id="s8-k1">LOGIN</span><span class="s8-dot" id="s8-d1">•</span><span class="gold-fill s8-k" id="s8-k2">PLAY</span><span class="s8-dot" id="s8-d2">•</span><span class="gold-fill s8-k" id="s8-k3">WIN!</span>
+    </div>
+    <div id="s8-wait" class="t-sub depth-soft"><span class="white-fill" id="s8-wait-t">NANTIKAN PENGUMUMAN GURU</span></div>
+    <div id="s8-flood"></div>
+  </div>
+  <script>
+    (function () {
+      function buildLogo3D(el) {
+        const name = el.dataset.logo;
+        const depth = +el.dataset.depth;
+        const mask = "url(assets/logos/" + name + ".png)";
+        const front = el.querySelector(".front");
+        function layer(cls, z, extra) {
+          const d = document.createElement("div");
+          d.className = cls;
+          d.style.webkitMaskImage = mask;
+          d.style.maskImage = mask;
+          d.style.transform = "translateZ(" + z + "px)" + (extra || "");
+          el.insertBefore(d, front);
+          return d;
+        }
+        layer("rim", -depth - 6, " scale(1.03)");
+        const n = 14;
+        for (let i = n; i >= 1; i--) {
+          const d = layer("side", (-depth * i) / n);
+          d.style.filter = "brightness(" + (1 - (0.55 * i) / n).toFixed(2) + ")";
+        }
+        el.querySelector(".bevel").style.transform = "translateZ(0.6px)";
+        const sheen = document.createElement("div");
+        sheen.className = "sheen";
+        sheen.style.webkitMaskImage = mask;
+        sheen.style.maskImage = mask;
+        sheen.style.transform = "translateZ(1.2px)";
+        el.appendChild(sheen);
+        return sheen;
+      }
+      const sheenD = buildLogo3D(document.getElementById("s8-delima"));
+      const sheenS = buildLogo3D(document.getElementById("s8-school"));
+
+      const tl = gsap.timeline({ paused: true });
+      // 53.2 s keluar dari limpahan cahaya scene 7
+      // tersembunyi sehingga limpahan cahaya scene 7 memenuhi bingkai (52.87 s), kemudian pudar
+      tl.fromTo("#s8-flood", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.27);
+      tl.to("#s8-flood", { opacity: 0, duration: 0.7, ease: "power2.out" }, 0.6);
+      tl.fromTo(["#s8-halo", "#s8-platform"], { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power2.out" }, 0.6);
+      // lambang DELIMa mendarat (utama), lencana sekolah di sisi
+      tl.fromTo("#s8-delima", { z: -260, rotateY: 24, rotateX: 6 }, { z: 0, rotateY: 0, rotateX: 0, duration: 1.5, ease: "expo.out" }, 0.55);
+      tl.fromTo("#s8-delima > *", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.55);
+      tl.fromTo("#s8-school", { z: -220, rotateY: -22 }, { z: 0, rotateY: 0, duration: 1.3, ease: "expo.out" }, 1.05);
+      tl.fromTo("#s8-school > *", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.05);
+      tl.fromTo(sheenS, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 0.8, ease: "power2.inOut" }, 1.6);
+      tl.fromTo("#s8-name-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 1.45);
+      tl.fromTo("#s8-years-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 2.0);
+      // LOGIN • PLAY • WIN! ikut sebutan narasi
+      tl.fromTo("#s8-pill", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.5);
+      [["#s8-k1", 2.82], ["#s8-d1", 3.3], ["#s8-k2", 3.64], ["#s8-d2", 4.1], ["#s8-k3", 4.32]].forEach(function (k) {
+        tl.fromTo(k[0], { opacity: 0, scale: 0.6, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "back.out(1.7)" }, k[1]);
+      });
+      tl.fromTo("#s8-wait-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 4.4);
+      // 57.6 s kord penamat: satu sapuan cahaya, kemudian bingkai kekal tenang hingga 60 s
+      tl.fromTo(sheenD, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 0.9, ease: "power2.inOut" }, 5.0);
+      tl.set({}, {}, 7.4);
+      window.__timelines["s8-finale"] = tl;
+    })();
+  </script>
+</template>

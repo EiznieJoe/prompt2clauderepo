@@ -1,0 +1,10 @@
+{
+  "name": "delima-audio-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "generaluser": "1.47.1",
+    "spessasynth_core": "4.4.2",
+    "text2wav": "0.0.14"
+  }
+}

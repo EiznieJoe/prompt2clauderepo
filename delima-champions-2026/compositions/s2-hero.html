@@ -1,0 +1,240 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s2-beam {
+      position: absolute;
+      left: 610px;
+      top: -40px;
+      width: 700px;
+      height: 760px;
+      background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(150, 230, 255, 0.55), rgba(60, 140, 255, 0.18) 55%, rgba(60, 140, 255, 0) 80%);
+    }
+    #s2-stage {
+      position: absolute;
+      inset: 0;
+      perspective: 1700px;
+      perspective-origin: 960px 470px;
+    }
+    #s2-rig {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      transform-style: preserve-3d;
+      transform-origin: 960px 400px;
+    }
+    #s2-platform {
+      position: absolute;
+      left: 560px;
+      top: 270px;
+      width: 800px;
+      height: 800px;
+      transform-origin: 50% 50%;
+    }
+    .s2-orbit {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s2-crest {
+      left: 673px;
+      top: 110px;
+      width: 573px;
+      height: 560px;
+    }
+    #s2-shock {
+      position: absolute;
+      left: 660px;
+      top: 90px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 6px rgba(255, 230, 140, 0.9),
+        0 0 60px 20px rgba(120, 220, 255, 0.6);
+    }
+    #s2-sparks {
+      position: absolute;
+      left: 960px;
+      top: 390px;
+    }
+    .s2-spark {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -5px;
+      border-radius: 50%;
+      background: #fff6c8;
+      box-shadow: 0 0 12px 4px rgba(255, 210, 90, 0.8);
+    }
+    #s2-t1 {
+      left: 0;
+      right: 0;
+      top: 712px;
+      text-align: center;
+      font-size: 80px;
+    }
+    #s2-t2 {
+      left: 0;
+      right: 0;
+      top: 812px;
+      text-align: center;
+      font-size: 104px;
+    }
+    .s2-w {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="s2-hero" data-width="1920" data-height="1080">
+    <div id="s2-beam" data-layout-ignore></div>
+    <div id="s2-sparks"></div>
+    <!-- jejak tenaga emas mengelilingi lambang: separuh belakang (di bawah lambang) dan separuh depan (di atas) -->
+    <svg id="s2-orbit-back" class="s2-orbit" viewBox="0 0 1920 1080" width="1920" height="1080">
+      <defs>
+        <filter id="s2-ob-back" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="7" /></filter>
+        <clipPath id="s2-oc-back"><rect x="0" y="0" width="1920" height="500" /></clipPath>
+      </defs>
+      <g clip-path="url(#s2-oc-back)">
+        <ellipse class="s2-trail-glow" cx="960" cy="500" rx="480" ry="100" fill="none" stroke="#ffc83a" stroke-width="30" stroke-linecap="round" filter="url(#s2-ob-back)" />
+        <ellipse class="s2-trail" cx="960" cy="500" rx="480" ry="100" fill="none" stroke="#fff3c0" stroke-width="9" stroke-linecap="round" />
+      </g>
+    </svg>
+    <div id="s2-stage">
+      <div id="s2-rig">
+        <!-- platform bulat bercahaya (satah mendatar) -->
+        <svg id="s2-platform" viewBox="0 0 800 800" width="800" height="800">
+          <defs>
+            <radialGradient id="s2-pg">
+              <stop offset="0" stop-color="#bff4ff" stop-opacity="0.95" />
+              <stop offset="0.45" stop-color="#2f8cff" stop-opacity="0.55" />
+              <stop offset="1" stop-color="#0a2a9a" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="400" cy="400" r="390" fill="url(#s2-pg)" />
+          <circle class="s2-pring" cx="400" cy="400" r="330" fill="none" stroke="#7fe6ff" stroke-width="10" />
+          <circle class="s2-pring" cx="400" cy="400" r="270" fill="none" stroke="#ffd24a" stroke-width="6" stroke-dasharray="30 14" />
+          <circle class="s2-pring" cx="400" cy="400" r="210" fill="none" stroke="#bff4ff" stroke-width="4" />
+          <circle class="s2-pring" cx="400" cy="400" r="370" fill="none" stroke="#3fa9ff" stroke-width="3" stroke-dasharray="4 10" />
+        </svg>
+        <div id="s2-shock"></div>
+        <div id="s2-crest" class="l3d delima" data-logo="delima" data-depth="44">
+          <img class="front" src="assets/logos/delima.png" alt="Lambang DELIMa Champions" />
+          <img class="bevel" src="assets/logos/delima-bevel.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <!-- jejak tenaga emas mengelilingi lambang: separuh belakang (di bawah lambang) dan separuh depan (di atas) -->
+    <svg id="s2-orbit-front" class="s2-orbit" viewBox="0 0 1920 1080" width="1920" height="1080">
+      <defs>
+        <filter id="s2-ob-front" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="7" /></filter>
+        <clipPath id="s2-oc-front"><rect x="0" y="500" width="1920" height="580" /></clipPath>
+      </defs>
+      <g clip-path="url(#s2-oc-front)">
+        <ellipse class="s2-trail-glow" cx="960" cy="500" rx="480" ry="100" fill="none" stroke="#ffc83a" stroke-width="30" stroke-linecap="round" filter="url(#s2-ob-front)" />
+        <ellipse class="s2-trail" cx="960" cy="500" rx="480" ry="100" fill="none" stroke="#fff3c0" stroke-width="9" stroke-linecap="round" />
+      </g>
+    </svg>
+    <div id="s2-t1" class="t-title depth-soft">
+      <span class="white-fill s2-w">DELIMa</span> <span class="white-fill s2-w">CHAMPIONS</span> <span class="white-fill s2-w">2026</span>
+    </div>
+    <div id="s2-t2" class="t-hero depth"><span class="gold-fill" id="s2-mission">MISI JUARA DIGITAL BERMULA!</span></div>
+  </div>
+  <script>
+    (function () {
+      function buildLogo3D(el) {
+        const name = el.dataset.logo;
+        const depth = +el.dataset.depth;
+        const mask = "url(assets/logos/" + name + ".png)";
+        const front = el.querySelector(".front");
+        function layer(cls, z, extra) {
+          const d = document.createElement("div");
+          d.className = cls;
+          d.style.webkitMaskImage = mask;
+          d.style.maskImage = mask;
+          d.style.transform = "translateZ(" + z + "px)" + (extra || "");
+          el.insertBefore(d, front);
+          return d;
+        }
+        layer("rim", -depth - 6, " scale(1.04)");
+        const n = 14;
+        for (let i = n; i >= 1; i--) {
+          const d = layer("side", (-depth * i) / n);
+          d.style.filter = "brightness(" + (1 - (0.55 * i) / n).toFixed(2) + ")";
+        }
+        el.querySelector(".bevel").style.transform = "translateZ(0.6px)";
+        const sheen = document.createElement("div");
+        sheen.className = "sheen";
+        sheen.style.webkitMaskImage = mask;
+        sheen.style.maskImage = mask;
+        sheen.style.transform = "translateZ(1.2px)";
+        el.appendChild(sheen);
+        return sheen;
+      }
+      const sheen = buildLogo3D(document.getElementById("s2-crest"));
+
+      // percikan tenaga yang berkumpul ke tengah (kedudukan berbiji)
+      function hash(i, s) {
+        const x = Math.sin(i * 91.7 + s * 47.3) * 24634.6345;
+        return x - Math.floor(x);
+      }
+      const sparks = document.getElementById("s2-sparks");
+      const sparkEls = [];
+      for (let i = 0; i < 36; i++) {
+        const d = document.createElement("div");
+        d.className = "s2-spark";
+        sparks.appendChild(d);
+        const a = hash(i, 1) * Math.PI * 2;
+        const r = 520 + hash(i, 2) * 420;
+        sparkEls.push({ el: d, x: Math.cos(a) * r, y: Math.sin(a) * r * 0.6, d: hash(i, 3) * 0.3 });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      const HIT = 0.96; // = 5.76 s global, downbeat muzik
+      tl.fromTo("#s2-platform", { rotateX: 76, y: 0, opacity: 0.35 }, { rotateX: 76, y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, 0.1);
+      tl.fromTo(".s2-pring", { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.12, ease: "power2.out" }, 0.25);
+      tl.fromTo("#s2-beam", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.3);
+      sparkEls.forEach(function (s) {
+        tl.fromTo(s.el, { x: s.x, y: s.y, opacity: 0, scale: 1.4 },
+          { x: 0, y: 0, opacity: 1, scale: 0.4, duration: 0.7 - s.d, ease: "power3.in" }, 0.22 + s.d);
+        tl.to(s.el, { opacity: 0, duration: 0.05 }, HIT - 0.02);
+      });
+      // HIT: lambang muncul
+      // (opacity pada anak, bukan .l3d: opacity pada induk meratakan 3D)
+      tl.fromTo("#s2-crest", { scale: 0.55 }, { scale: 1, duration: 0.9, ease: "expo.out" }, HIT);
+      tl.fromTo("#s2-crest > *", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "none" }, HIT);
+      tl.fromTo("#s2-shock", { scale: 0.25, opacity: 1 }, { scale: 2.3, opacity: 0, duration: 0.8, ease: "power2.out" }, HIT);
+      // arka kamera: dedah ketebalan, kemudian mendap ke pandangan depan
+      tl.fromTo("#s2-rig", { rotateY: -38, rotateX: 8 }, { rotateY: 10, rotateX: 2, duration: 1.7, ease: "power2.inOut" }, HIT);
+      tl.to("#s2-rig", { rotateY: 0, rotateX: 0, duration: 1.1, ease: "power2.out" }, HIT + 1.7);
+      // jejak emas mengelilingi lambang
+      const C = document.querySelector(".s2-trail").getTotalLength();
+      [".s2-trail", ".s2-trail-glow"].forEach(function (s) {
+        tl.fromTo(s, { strokeDasharray: "900 " + C, strokeDashoffset: 0, opacity: 0 },
+          { strokeDashoffset: -2 * C, opacity: 1, duration: 3.0, ease: "power1.inOut" }, HIT + 0.1);
+        tl.to(s, { opacity: 0, duration: 0.45, ease: "power2.in" }, HIT + 2.75);
+      });
+      // teks pada perkataan narasi
+      tl.fromTo("#s2-t1 .s2-w", { opacity: 0, filter: "blur(8px)" },
+        { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.18, ease: "power3.out" }, 1.2);
+      tl.fromTo("#s2-mission", { opacity: 0, filter: "blur(12px)", scale: 1.08 },
+        { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.3, ease: "power3.out" }, 4.0);
+      tl.fromTo(sheen, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 1.0, ease: "power2.inOut" }, 4.0);
+      // keluar: teks kabur, lambang dibawa ke panel login (scene 3)
+      tl.to(["#s2-t1 .s2-w", "#s2-mission"], { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 6.25);
+      tl.to(["#s2-platform", "#s2-beam"], { opacity: 0, duration: 0.4, ease: "power2.in" }, 6.35);
+      // 11.6 s global: scene 3 mengambil alih lambang pada kedudukan & saiz yang sama dan membawanya ke panel login
+      tl.set("#s2-crest > *", { opacity: 0 }, 6.8);
+      window.__timelines["s2-hero"] = tl;
+    })();
+  </script>
+</template>

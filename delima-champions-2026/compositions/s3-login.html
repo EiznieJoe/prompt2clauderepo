@@ -1,0 +1,307 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #s3-all {
+      position: absolute;
+      inset: 0;
+    }
+    #s3-title1 { left: 150px; top: 250px; font-size: 150px; }
+    #s3-title2 { left: 150px; top: 400px; font-size: 150px; }
+    #s3-sub1 { left: 158px; top: 600px; font-size: 52px; }
+    #s3-sub2 { left: 158px; top: 664px; font-size: 52px; }
+    #s3-panel-bg {
+      left: 1080px;
+      top: 230px;
+      width: 620px;
+      height: 580px;
+    }
+    .s3-field {
+      position: absolute;
+      left: 1140px;
+      width: 500px;
+      height: 82px;
+      border-radius: 20px;
+      background: rgba(4, 16, 70, 0.7);
+      box-shadow: inset 0 0 0 2px rgba(120, 200, 255, 0.55);
+    }
+    #s3-f1 { top: 440px; }
+    #s3-f2 { top: 545px; }
+    .s3-field svg {
+      position: absolute;
+      left: 22px;
+      top: 21px;
+      width: 40px;
+      height: 40px;
+    }
+    .s3-dots {
+      position: absolute;
+      left: 84px;
+      top: 25px;
+      height: 32px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .s3-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #dff3ff;
+      box-shadow: 0 0 8px rgba(120, 220, 255, 0.9);
+    }
+    #s3-btn {
+      position: absolute;
+      left: 1140px;
+      top: 668px;
+      width: 500px;
+      height: 92px;
+      border-radius: 46px;
+      background: linear-gradient(180deg, #ffe680, #ffbf1f 55%, #e08a00);
+      box-shadow: 0 0 0 3px rgba(255, 245, 200, 0.6), 0 10px 30px rgba(255, 180, 0, 0.4);
+    }
+    #s3-btn-label {
+      left: 0;
+      right: 0;
+      top: 22px;
+      text-align: center;
+      font-size: 44px;
+      color: #10226e;
+    }
+    #s3-btn-ok {
+      position: absolute;
+      inset: 0;
+      border-radius: 46px;
+      background: linear-gradient(180deg, #7dffb8, #19c46b 60%, #0c8f4c);
+      box-shadow: 0 0 40px rgba(60, 255, 150, 0.7);
+    }
+    #s3-btn-ok svg {
+      position: absolute;
+      left: 214px;
+      top: 10px;
+      width: 72px;
+      height: 72px;
+    }
+    #s3-crest {
+      left: 1323px;
+      top: 255px;
+      width: 133px;
+      height: 130px;
+    }
+    #s3-stage {
+      position: absolute;
+      inset: 0;
+      perspective: 1400px;
+      perspective-origin: 1390px 400px;
+    }
+    #s3-ticket {
+      position: absolute;
+      left: 1120px;
+      top: 330px;
+      width: 540px;
+      height: 230px;
+    }
+    #s3-ticket-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 22px;
+      background: linear-gradient(160deg, #fff4b8 0%, #ffd34a 30%, #f3a90f 70%, #ffd75e 100%);
+      -webkit-mask: radial-gradient(circle 26px at 0 50%, transparent 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 26px at 100% 50%, transparent 98%, #000) right/51% 100% no-repeat;
+      mask: radial-gradient(circle 26px at 0 50%, transparent 98%, #000) left/51% 100% no-repeat, radial-gradient(circle 26px at 100% 50%, transparent 98%, #000) right/51% 100% no-repeat;
+    }
+    #s3-ticket-glow {
+      position: absolute;
+      inset: -40px;
+      border-radius: 60px;
+      background: radial-gradient(closest-side, rgba(255, 220, 110, 0.75), rgba(255, 200, 60, 0));
+    }
+    #s3-ticket-line {
+      position: absolute;
+      left: 172px;
+      top: 26px;
+      bottom: 26px;
+      border-left: 4px dashed rgba(120, 60, 0, 0.55);
+    }
+    #s3-ticket-text {
+      left: 200px;
+      top: 70px;
+      font-size: 44px;
+      color: #142a86;
+    }
+    #s3-ticket-stars {
+      position: absolute;
+      left: 200px;
+      top: 140px;
+      width: 300px;
+      height: 44px;
+    }
+    #s3-ticket-badge {
+      position: absolute;
+      left: 34px;
+      top: 50px;
+      width: 112px;
+      height: 130px;
+      border-radius: 18px;
+      background: rgba(20, 42, 134, 0.18);
+    }
+    #s3-chamber {
+      position: absolute;
+      left: 1210px;
+      top: 600px;
+      width: 360px;
+      height: 380px;
+    }
+  </style>
+  <div id="root" data-composition-id="s3-login" data-width="1920" data-height="1080">
+    <div id="s3-all">
+      <div id="s3-title1" class="t-hero depth"><span class="gold-fill">LUCKY</span></div>
+      <div id="s3-title2" class="t-hero depth"><span class="white-fill">LOGIN</span></div>
+      <div id="s3-sub1" class="t-sub depth-soft"><span class="white-fill">LOG MASUK &amp;</span></div>
+      <div id="s3-sub2" class="t-sub depth-soft"><span class="gold-fill">REBUT PELUANG MENANG!</span></div>
+
+      <!-- panel log masuk berstail: tiada maklumat peribadi -->
+      <div id="s3-panel">
+        <div id="s3-panel-bg" class="glass"></div>
+        <div id="s3-f1" class="s3-field">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="13" r="8" fill="#9fdcff" /><path d="M5 37c2-9 8-13 15-13s13 4 15 13z" fill="#9fdcff" /></svg>
+          <div class="s3-dots" id="s3-d1"><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i></div>
+        </div>
+        <div id="s3-f2" class="s3-field">
+          <svg viewBox="0 0 40 40"><rect x="7" y="17" width="26" height="20" rx="4" fill="#9fdcff" /><path d="M13 17v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#9fdcff" stroke-width="4" /></svg>
+          <div class="s3-dots" id="s3-d2"><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i><i class="s3-dot"></i></div>
+        </div>
+        <div id="s3-btn">
+          <div id="s3-btn-label" class="t-title">LOG MASUK</div>
+          <div id="s3-btn-ok"><svg viewBox="0 0 72 72"><path d="M16 37l13 13 27-29" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+        </div>
+      </div>
+
+      <!-- kebuk cabutan bertuah -->
+      <svg id="s3-chamber" viewBox="0 0 360 380" width="360" height="380">
+        <defs>
+          <radialGradient id="s3-glass" cx="0.4" cy="0.35" r="0.7">
+            <stop offset="0" stop-color="#c8f2ff" stop-opacity="0.55" />
+            <stop offset="0.6" stop-color="#2a7cff" stop-opacity="0.3" />
+            <stop offset="1" stop-color="#0b2fa8" stop-opacity="0.55" />
+          </radialGradient>
+          <linearGradient id="s3-goldrim" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fff1a8" />
+            <stop offset="0.5" stop-color="#ffc21f" />
+            <stop offset="1" stop-color="#b86f00" />
+          </linearGradient>
+        </defs>
+        <rect x="150" y="0" width="60" height="30" rx="8" fill="url(#s3-goldrim)" />
+        <rect x="162" y="10" width="36" height="8" rx="4" fill="#2a1600" />
+        <circle id="s3-ch-glow" cx="180" cy="180" r="160" fill="#ffd34a" opacity="0" />
+        <circle cx="180" cy="180" r="150" fill="url(#s3-glass)" stroke="url(#s3-goldrim)" stroke-width="12" />
+        <g id="s3-ch-inner">
+          <rect x="110" y="120" width="70" height="30" rx="6" fill="#ffd34a" opacity="0.85" transform="rotate(-20 145 135)" />
+          <rect x="190" y="200" width="70" height="30" rx="6" fill="#ffe07a" opacity="0.85" transform="rotate(25 225 215)" />
+          <rect x="120" y="215" width="70" height="30" rx="6" fill="#f3a90f" opacity="0.85" transform="rotate(10 155 230)" />
+          <rect x="185" y="105" width="70" height="30" rx="6" fill="#ffd34a" opacity="0.7" transform="rotate(40 220 120)" />
+        </g>
+        <circle cx="180" cy="180" r="118" fill="none" stroke="#bff4ff" stroke-width="3" stroke-dasharray="14 12" id="s3-ch-ring" />
+        <ellipse cx="135" cy="110" rx="50" ry="26" fill="#ffffff" opacity="0.35" transform="rotate(-30 135 110)" />
+        <path d="M110 320h140l26 50H84z" fill="url(#s3-goldrim)" />
+      </svg>
+
+      <!-- tiket emas (hasil log masuk berjaya) -->
+      <div id="s3-stage">
+        <div id="s3-ticket">
+          <div id="s3-ticket-glow"></div>
+          <div id="s3-ticket-face">
+            <div id="s3-ticket-badge"></div>
+            <div id="s3-ticket-line"></div>
+            <div id="s3-ticket-text" class="t-hero">LUCKY LOGIN</div>
+            <svg id="s3-ticket-stars" viewBox="0 0 300 44">
+              <g fill="#142a86">
+                <path d="m22 2 5 13h14l-11 9 4 14-12-8-12 8 4-14L3 15h14z" />
+                <path d="m82 2 5 13h14l-11 9 4 14-12-8-12 8 4-14-11-9h14z" />
+                <path d="m142 2 5 13h14l-11 9 4 14-12-8-12 8 4-14-11-9h14z" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div id="s3-crest" class="l3d delima" data-logo="delima" data-depth="10">
+          <img class="front" src="assets/logos/delima.png" alt="Lambang DELIMa Champions" />
+          <img class="bevel" src="assets/logos/delima-bevel.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      function buildLogo3D(el) {
+        const name = el.dataset.logo;
+        const depth = +el.dataset.depth;
+        const mask = "url(assets/logos/" + name + ".png)";
+        const front = el.querySelector(".front");
+        function layer(cls, z, extra) {
+          const d = document.createElement("div");
+          d.className = cls;
+          d.style.webkitMaskImage = mask;
+          d.style.maskImage = mask;
+          d.style.transform = "translateZ(" + z + "px)" + (extra || "");
+          el.insertBefore(d, front);
+          return d;
+        }
+        layer("rim", -depth - 3, " scale(1.03)");
+        const n = 8;
+        for (let i = n; i >= 1; i--) {
+          const d = layer("side", (-depth * i) / n);
+          d.style.filter = "brightness(" + (1 - (0.55 * i) / n).toFixed(2) + ")";
+        }
+        el.querySelector(".bevel").style.transform = "translateZ(0.6px)";
+      }
+      buildLogo3D(document.getElementById("s3-crest"));
+
+      const tl = gsap.timeline({ paused: true });
+      // 0.0-0.6 panel terbina sementara lambang terbang masuk (11.2-11.8 s global)
+      tl.fromTo("#s3-panel-bg", { opacity: 0, scale: 0.9, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, 0.25);
+      tl.fromTo(["#s3-f1", "#s3-f2", "#s3-btn"], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: "power3.out" }, 0.55);
+      // lambang diambil alih daripada scene 2 pada 11.6 s: saiz & kedudukan sama, terbang ke kepala panel
+      tl.fromTo("#s3-crest", { x: -430, y: 70, scale: 4.3077 }, { x: 0, y: 0, scale: 1, duration: 0.65, ease: "power3.inOut" }, 0.4);
+      tl.fromTo("#s3-crest > *", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.4);
+      // tajuk
+      tl.fromTo("#s3-title1 .gold-fill", { opacity: 0, x: -60, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.85);
+      tl.fromTo("#s3-title2 .white-fill", { opacity: 0, x: -60, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 1.0);
+      tl.fromTo("#s3-sub1 .white-fill", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.35);
+      tl.fromTo("#s3-sub2 .gold-fill", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.5);
+      // titik kata laluan (12.9-13.9 s)
+      tl.fromTo("#s3-d1 .s3-dot", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.08, stagger: 0.07, ease: "power2.out" }, 1.7);
+      tl.fromTo("#s3-d2 .s3-dot", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.08, stagger: 0.07, ease: "power2.out" }, 2.35);
+      // 14.4 s tekan butang, 14.65 s berjaya
+      tl.fromTo("#s3-btn", { scale: 1 }, { scale: 0.94, duration: 0.08, ease: "power2.in" }, 3.18);
+      tl.to("#s3-btn", { scale: 1, duration: 0.3, ease: "power3.out" }, 3.26);
+      tl.fromTo("#s3-btn-ok", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, 3.4);
+      tl.fromTo("#s3-btn-ok svg", { scale: 0.4 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, 3.42);
+      // 15.0-15.86 s panel bertukar menjadi tiket emas
+      tl.to(["#s3-f1", "#s3-f2", "#s3-btn"], { opacity: 0, filter: "blur(8px)", duration: 0.3, stagger: 0.05, ease: "power2.in" }, 3.8);
+      tl.to("#s3-panel-bg", { scaleX: 0.87, scaleY: 0.4, y: -75, opacity: 0, duration: 0.55, ease: "power3.inOut" }, 3.9);
+      tl.fromTo("#s3-ticket", { opacity: 0, scale: 0.85, rotateX: 25 }, { opacity: 1, scale: 1, rotateX: 0, duration: 0.6, ease: "expo.out" }, 4.3);
+      tl.fromTo("#s3-ticket-glow", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 4.6);
+      // lambang turun ke dalam tiket sebagai cop
+      tl.to("#s3-crest", { x: -180, y: 125, scale: 0.92, duration: 0.6, ease: "power3.inOut" }, 3.95);
+      // 16.1 s kebuk muncul, 16.75-17.85 s tiket meluncur masuk
+      tl.fromTo("#s3-chamber", { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 4.9);
+      tl.to("#s3-ticket", { y: 290, scale: 0.22, rotate: 12, duration: 1.1, ease: "power2.in" }, 5.55);
+      tl.to("#s3-crest", { x: -39.6, y: 415, scale: 0.2, rotate: 12, duration: 1.1, ease: "power2.in" }, 5.55);
+      tl.to(["#s3-ticket", "#s3-crest > *"], { opacity: 0, duration: 0.12, ease: "none" }, 6.55);
+      tl.fromTo("#s3-ch-glow", { opacity: 0 }, { opacity: 0.9, duration: 0.15, ease: "power2.out" }, 6.65);
+      tl.to("#s3-ch-glow", { opacity: 0.35, duration: 0.8, ease: "power2.out" }, 6.8);
+      tl.fromTo("#s3-ch-inner", { rotate: 0, svgOrigin: "180 180" }, { rotate: 540, svgOrigin: "180 180", duration: 2.0, ease: "power2.out" }, 6.65);
+      tl.fromTo("#s3-ch-ring", { rotate: 0, svgOrigin: "180 180" }, { rotate: -180, svgOrigin: "180 180", duration: 2.0, ease: "power2.out" }, 6.65);
+      // 19.55 s keluar: sapuan pantas ke kiri
+      tl.to("#s3-all", { x: -760, filter: "blur(18px)", opacity: 0, duration: 0.45, ease: "power3.in" }, 8.35);
+      window.__timelines["s3-login"] = tl;
+    })();
+  </script>
+</template>
