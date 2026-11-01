@@ -450,6 +450,123 @@
         "trim": 7.74,
         "_": "Nantikan pengumuman guru. (teks 56.76 s)"
       }
+    ],
+    "gemini": [
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 0.4,
+        "trim": 0.32,
+        "len": 1.65,
+        "_": "Warga SK Rugading…"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 2.3,
+        "trim": 2.38,
+        "len": 2.31,
+        "_": "bersedia untuk menjadi juara digital?"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 5.95,
+        "trim": 5.54,
+        "len": 2.65,
+        "_": "DELIMa Champions dua ribu dua puluh enam."
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 8.9,
+        "trim": 8.38,
+        "len": 2.09,
+        "_": "Misi juara digital bermula! (teks 8.8 s)"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 12.35,
+        "trim": 11.99,
+        "len": 2.59,
+        "_": "Log masuk menggunakan akaun DELIMa sendiri."
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 15.65,
+        "trim": 15.07,
+        "len": 3.51,
+        "_": "Sahkan penyertaan dan rebut peluang memenangi cabutan bertuah!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 20.45,
+        "trim": 19.87,
+        "len": 1.81,
+        "_": "Bawa kelas anda ke puncak!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 22.55,
+        "trim": 21.89,
+        "len": 3.35,
+        "_": "Setiap penyertaan membantu kelas merebut gelaran terbaik."
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 29.55,
+        "trim": 26.33,
+        "len": 5.37,
+        "_": "Uji minda … keselamatan digital dan pembelajaran!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 37.55,
+        "trim": 32.84,
+        "len": 5.45,
+        "_": "Murid Tahun Empat hingga Enam … Poster Digital DELIMa!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 45.45,
+        "trim": 39.36,
+        "len": 4.27,
+        "_": "Lengkapkan log masuk dan Fun Quiz … Grand Lucky Draw!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 52.85,
+        "trim": 44.29,
+        "len": 1.82,
+        "_": "Jom sertai DELIMa Champions!"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 54.9,
+        "trim": 46.36,
+        "len": 0.54,
+        "_": "Login (54.96 s, beat)"
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 55.5,
+        "trim": 47.12,
+        "len": 0.39,
+        "_": "Play (55.56 s, beat)",
+        "duck": 0.6
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 56.1,
+        "trim": 47.82,
+        "len": 0.44,
+        "_": "Win! (56.16 s, hit penamat lagu)",
+        "duck": 0.6,
+        "gain_db": 2
+      },
+      {
+        "file": "assets/audio/vo-gemini/gemini.wav",
+        "at": 56.75,
+        "trim": 49.06,
+        "len": 1.43,
+        "_": "Nantikan pengumuman guru."
+      }
     ]
   },
   "vo_active": "rakaman"

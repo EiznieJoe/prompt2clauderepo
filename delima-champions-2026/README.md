@@ -7,12 +7,13 @@ Video promo 60 saat, 1920×1080, 30 fps, MP4 (H.264 + AAC), dibina dengan [Hyper
 | Fail | Isi |
 |---|---|
 | `output/delima-champions-2026-60s-narasi-rakaman.mp4` | Muzik + SFX + narasi rakaman sebenar |
+| `output/delima-champions-2026-60s-narasi-gemini.mp4` | Muzik + SFX + narasi Gemini TTS (Google AI Studio), untuk perbandingan |
 | `output/delima-champions-2026-60s-narasi-yasmin.mp4` | Muzik + SFX + narasi suara neural Yasmin (ms-MY), untuk perbandingan |
 | `output/delima-champions-2026-60s-muzik-sfx.mp4` | Muzik + SFX sahaja, semua teks promosi kekal |
 
 ### Narasi
 
-Dua set narasi dalam `tools/cues.json` → `vo_sets`: **rakaman** (aktif, `vo_active`) daripada `assets/source/rakaman-asal.m4a`, dibersihkan ke `assets/audio/vo-rakaman/rakaman.wav` dan dipotong ikut ayat; dan **yasmin** (di bawah). Tukar set: `python3 tools/mix_audio.py --vo yasmin`.
+Dua set narasi dalam `tools/cues.json` → `vo_sets`: **rakaman** (aktif, `vo_active`) daripada `assets/source/rakaman-asal.m4a`, dibersihkan ke `assets/audio/vo-rakaman/rakaman.wav` dan dipotong ikut ayat; **gemini** (Google AI Studio, `assets/source/gemini-aistudio-asal.wav` → `assets/audio/vo-gemini/`, mix di `assets/audio/mix-vo-gemini.wav`), dan **yasmin** (di bawah). Tukar set: `python3 tools/mix_audio.py --vo gemini --out assets/audio/mix-vo-gemini.wav`.
 
 Narasi dijana dengan suara neural **ms-MY-YasminNeural** melalui `edge-tts` (`tools/edge_tts_vo.py`, teks dalam `tools/vo-script.json`). `edge-tts` guna perkhidmatan Read Aloud Microsoft Edge: percuma dan tanpa kunci, tetapi bukan API rasmi, jadi ia boleh berhenti berfungsi tanpa notis. Fail suara sedia ada (`assets/audio/vo/`) kekal dalam repo, jadi video boleh dibina semula tanpa perkhidmatan tu. Alternatif rasmi: `tools/azure_tts.py` (Azure Speech, perlukan kunci).
 
