@@ -2,7 +2,8 @@
 
 Video tutorial menegak 1080×1920, 30 fps, MP4 (H.264 + AAC), dibina dengan HyperFrames. Untuk aktiviti **Lucky Login** (DELIMa Champions 2026, SK Rugading, Tuaran): murid layak menyertai bila log masuk ke DELIMa 3.0 dengan ID DELIMa sendiri.
 
-- Video siap: `output/cara-log-masuk-delima-3.mp4`
+- Video siap: `output/cara-log-masuk-delima-3.mp4` (lagu "Tutorial", The Mountain)
+- Versi lagu kedua: `output/cara-log-masuk-delima-3-lagu-monume.mp4` (lagu "Educational Presentation", Monume; `python3 tools/mix_audio.py --lagu monume`)
 - Laman: https://d3.delima.edu.my/landing
 
 ## Aliran video
