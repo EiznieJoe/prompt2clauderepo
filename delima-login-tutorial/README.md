@@ -2,8 +2,7 @@
 
 Video tutorial menegak 1080×1920, 30 fps, MP4 (H.264 + AAC), dibina dengan HyperFrames. Untuk aktiviti **Lucky Login** (DELIMa Champions 2026, SK Rugading, Tuaran): murid layak menyertai bila log masuk ke DELIMa 3.0 dengan ID DELIMa sendiri.
 
-- Video siap: `output/cara-log-masuk-delima-3.mp4` (lagu "Tutorial", The Mountain)
-- Versi lagu kedua: `output/cara-log-masuk-delima-3-lagu-monume.mp4` (lagu "Educational Presentation", Monume; `python3 tools/mix_audio.py --lagu monume`)
+- Video siap: `output/cara-log-masuk-delima-3.mp4` (lagu "Educational Presentation", Monume)
 - Laman: https://d3.delima.edu.my/landing
 
 ## Aliran video
@@ -25,7 +24,7 @@ Rakaman asal (110 s) **tidak disimpan dalam repo** kerana mengandungi emel, nama
 
 ## Audio
 
-Tiada narasi. Muzik "Tutorial" oleh The Mountain (Pixabay #508040, lesen Pixabay), 116 BPM: intro ringan di bawah tajuk, bahagian penuh masuk bila telefon muncul (9.9 s), kemudian 2 bar terakhir lagu di bawah kad penutup dengan bar terakhir tepat pada "LUCKY LOGIN!" (34.75 s) dan reda perlahan hingga 40 s. SFX Pixabay: klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya". `python3 tools/mix_audio.py` → `assets/audio/mix.wav` (-16 LUFS).
+Tiada narasi. Muzik "Educational Presentation" oleh Monume (Pixabay #547934, lesen Pixabay), 105 BPM, satu potongan berterusan: bahagian lembut di bawah tajuk, drop lagu tepat bila telefon muncul (9.6 s), hit lagu tepat pada "LUCKY LOGIN!" (34.75 s), outro lembut reda hingga 40 s. Alternatif: lagu "Tutorial" (The Mountain), `python3 tools/mix_audio.py --lagu tutorial`. SFX Pixabay: klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya". `python3 tools/mix_audio.py` → `assets/audio/mix.wav` (-16 LUFS).
 
 ## Edit & render
 

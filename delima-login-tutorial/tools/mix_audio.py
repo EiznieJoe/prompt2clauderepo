@@ -1,6 +1,6 @@
 """Muzik + SFX untuk video tutorial log masuk (40 s) -> assets/audio/mix.wav
 
-Muzik: "Tutorial" oleh The Mountain (Pixabay #508040), 116 BPM, downbeat pada lagu 17.06 + 2.069k s.
+Alternatif: "Tutorial" oleh The Mountain (Pixabay #508040), 116 BPM, downbeat pada lagu 17.06 + 2.069k s.
   A: lagu 7.14 s  -> video 0-32.68  (intro ringan di bawah tajuk; bahagian penuh masuk 9.92 s,
                                      serentak telefon muncul)
   B: lagu 95.68 s -> video 32.68-40  (2 bar terakhir lagu di bawah kad penutup; bar terakhir
@@ -9,13 +9,13 @@ Muzik: "Tutorial" oleh The Mountain (Pixabay #508040), 116 BPM, downbeat pada la
 Kedua-dua titik potongan jatuh pada downbeat.
 SFX (Pixabay): klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya" dan "LUCKY LOGIN!".
 
-Pilihan kedua: "Educational Presentation" oleh Monume (Pixabay #547934), 105 BPM:
+Lagu rasmi: "Educational Presentation" oleh Monume (Pixabay #547934), 105 BPM:
   lagu 45.28 s -> video 0-40 (breakdown lembut di bawah tajuk; drop lagu 54.85 s = 9.57 s video,
   serentak telefon muncul; hit lagu 80.03 s = 34.75 s video, serentak "LUCKY LOGIN!";
   outro lembut dari 38.7 s, reda hingga 40 s)
 
-    python3 tools/mix_audio.py                 # Tutorial (The Mountain) -> assets/audio/mix.wav
-    python3 tools/mix_audio.py --lagu monume   # Monume -> assets/audio/mix-monume.wav
+    python3 tools/mix_audio.py                   # Monume (lagu rasmi) -> assets/audio/mix.wav
+    python3 tools/mix_audio.py --lagu tutorial   # Tutorial (The Mountain) -> assets/audio/mix-tutorial.wav
 """
 import sys
 import os
@@ -36,7 +36,7 @@ def decode(path):
     return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(np.float64)
 
 
-LAGU = sys.argv[sys.argv.index("--lagu") + 1] if "--lagu" in sys.argv else "tutorial"
+LAGU = sys.argv[sys.argv.index("--lagu") + 1] if "--lagu" in sys.argv else "monume"
 song = decode(os.path.join(ROOT, {
     "tutorial": "assets/source/the-mountain-tutorial-508040.mp3",
     "monume": "assets/source/monume-educational-presentation-547934.mp3",
@@ -126,7 +126,7 @@ for f, at, g in CUES:
 
 mix = music + sfx
 mix *= np.clip((DUR - t) / 0.2, 0, 1)[:, None]
-out = os.path.join(ROOT, "assets/audio/mix.wav" if LAGU == "tutorial" else f"assets/audio/mix-{LAGU}.wav")
+out = os.path.join(ROOT, "assets/audio/mix.wav" if LAGU == "monume" else f"assets/audio/mix-{LAGU}.wav")
 tmp = out + ".tmp.wav"
 subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", "-c:a", "pcm_f32le", tmp],
                input=mix.astype(np.float32).tobytes(), check=True)
