@@ -24,7 +24,7 @@ Rakaman asal (110 s) **tidak disimpan dalam repo** kerana mengandungi emel, nama
 
 ## Audio
 
-Tiada narasi. Muzik "Epic" oleh kulakovka (Pixabay, lesen Pixabay) disunting supaya hit penamat jatuh tepat pada "LUCKY LOGIN!" (35.7 s) dan reda hingga 40 s. SFX Pixabay: klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya". `python3 tools/mix_audio.py` → `assets/audio/mix.wav` (-16 LUFS).
+Tiada narasi. Muzik "Tutorial" oleh The Mountain (Pixabay #508040, lesen Pixabay), 116 BPM: intro ringan di bawah tajuk, bahagian penuh masuk bila telefon muncul (9.9 s), kemudian 2 bar terakhir lagu di bawah kad penutup dengan bar terakhir tepat pada "LUCKY LOGIN!" (34.75 s) dan reda perlahan hingga 40 s. SFX Pixabay: klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya". `python3 tools/mix_audio.py` → `assets/audio/mix.wav` (-16 LUFS).
 
 ## Edit & render
 

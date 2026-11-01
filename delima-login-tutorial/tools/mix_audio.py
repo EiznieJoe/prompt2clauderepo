@@ -1,10 +1,13 @@
 """Muzik + SFX untuk video tutorial log masuk (40 s) -> assets/audio/mix.wav
 
-Muzik: "Epic" oleh kulakovka (Pixabay #624630), 100 BPM, disunting pada fasa bar yang sama:
-  A: lagu 5.695 s  -> video 0-34.84   (masuk penuh lagu 10.195 s = 4.5 s video, peralihan ke "Sebelum Mula")
-  B: lagu 131.735 s -> video 34.84-40 (hit penamat lagu 132.595 s = 35.7 s video, serentak "LUCKY LOGIN!")
-     + gema hit dipanjangkan (Paulstretch berbiji) hingga reda tepat pada 40 s
-SFX (Pixabay): klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya" dan hit.
+Muzik: "Tutorial" oleh The Mountain (Pixabay #508040), 116 BPM, downbeat pada lagu 17.06 + 2.069k s.
+  A: lagu 7.14 s  -> video 0-32.68  (intro ringan di bawah tajuk; bahagian penuh masuk 9.92 s,
+                                     serentak telefon muncul)
+  B: lagu 95.68 s -> video 32.68-40  (2 bar terakhir lagu di bawah kad penutup; bar terakhir
+                                     lagu 97.75 s = 34.75 s video, serentak "LUCKY LOGIN!",
+                                     kemudian reda semula jadi hingga 40 s)
+Kedua-dua titik potongan jatuh pada downbeat.
+SFX (Pixabay): klik pada setiap tekanan skrin, whoosh pada peralihan, kilauan pada "berjaya" dan "LUCKY LOGIN!".
 
     python3 tools/mix_audio.py
 """
@@ -26,7 +29,7 @@ def decode(path):
     return np.frombuffer(raw, np.float32).reshape(-1, 2).astype(np.float64)
 
 
-song = decode(os.path.join(ROOT, "assets/source/kulakovka-epic-624630.mp3"))
+song = decode(os.path.join(ROOT, "assets/source/the-mountain-tutorial-508040.mp3"))
 
 
 def take(start, n):
@@ -35,18 +38,18 @@ def take(start, n):
     return np.pad(seg, ((0, n - len(seg)), (0, 0)))
 
 
-OFF_A, SPLICE, HIT = 10.195 - 4.5, 34.84, 35.7
-OFF_B = 132.595 - HIT                  # OFF_B - OFF_A = 91.2 s = 38 bar @ 100 BPM
-XF = int(0.06 * SR)
+OFF_A, SPLICE, HIT = 7.14, 32.68, 34.75
+OFF_B = 95.68 - SPLICE
+XF = int(0.15 * SR)
 cut = int(SPLICE * SR)
 music = np.zeros((N, 2))
 a = take(OFF_A, cut + XF)
-b = take(OFF_B + SPLICE - 0.06, N - cut + XF)
+b = take(OFF_B + SPLICE - 0.15, N - cut + XF)
 ramp = np.linspace(0, 1, XF)[:, None]
 music[:cut] = a[:cut]
 music[cut - XF:cut] = a[cut - XF:cut] * (1 - ramp) + b[:XF] * ramp
 music[cut:] = b[XF:XF + N - cut]
-fi = int(0.35 * SR)
+fi = int(0.5 * SR)
 music[:fi] *= np.linspace(0, 1, fi)[:, None]
 
 
@@ -68,18 +71,18 @@ def paulstretch(seg, out_len, win=0.5, seed=7):
     return y[:out_len]
 
 
-# lapisan lembut: gema hit penamat dibekukan, reda hingga 40 s
-tail = take(132.70, int(0.6 * SR))
-p0, pk, pf = HIT + 0.14, HIT + 0.84, DUR - 1.2
+# lapisan lembut penutup: bunyi bar terakhir "dibekukan" supaya ada bunyi reda perlahan hingga 40 s
+tail = take(98.85, int(0.6 * SR))
+p0, pk, pf = 35.9, 36.8, DUR - 1.2
 pad = paulstretch(tail, N - int(p0 * SR))
 pad /= np.sqrt((pad[int(0.5 * SR):int(1.5 * SR)] ** 2).mean()) + 1e-9
-pad *= np.sqrt((tail ** 2).mean()) * 10 ** (-3 / 20)
+pad *= np.sqrt((tail ** 2).mean()) * 10 ** (-4 / 20)
 tt = np.arange(len(pad)) / SR + p0
 env = np.clip((tt - p0) / (pk - p0), 0, 1)
 env *= 10 ** (-6 * np.clip((tt - pk) / (pf - pk), 0, 1) / 20)
 env *= np.cos(np.clip((tt - pf) / (DUR - pf), 0, 1) * np.pi / 2)
 music[int(p0 * SR):] += pad * env[:, None]
-music *= 10 ** (-3 / 20)
+music *= 10 ** (-4 / 20)
 
 SFX = os.path.join(ROOT, "assets/audio/sfx")
 # (fail, mula, gain dB) -- mula = puncak dikurangkan (whoosh 0.164, pop 0.122, klik 0.053, kilauan 0.03)
@@ -92,7 +95,7 @@ CUES = [
     ("click-soft.mp3", 27.25, -6),  # tekan akaun
     ("sparkle.mp3", 28.42, -9),     # berjaya
     ("whoosh.mp3", 32.10, -10),     # ke kad penutup
-    ("sparkle.mp3", 35.67, -8),     # LUCKY LOGIN! (hit penamat)
+    ("sparkle.mp3", 34.72, -8),     # LUCKY LOGIN! (bar terakhir lagu)
 ]
 sfx = np.zeros((N, 2))
 for f, at, g in CUES:
