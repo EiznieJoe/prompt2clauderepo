@@ -1,0 +1,11 @@
+{
+  "name": "delima-login-tutorial",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.169 preview",
+    "check": "npx --yes hyperframes@0.8.169 check",
+    "render": "npx --yes hyperframes@0.8.169 render -q delivery -o output/cara-log-masuk-delima-3.mp4",
+    "publish": "npx --yes hyperframes@0.8.169 publish"
+  }
+}

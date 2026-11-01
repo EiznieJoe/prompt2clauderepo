@@ -1,0 +1,114 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #t2-all {
+      position: absolute;
+      inset: 0;
+    }
+    #t2-badge {
+      left: 330px;
+      top: 220px;
+      width: 420px;
+      height: 84px;
+    }
+    #t2-badge .t-title {
+      left: 0;
+      right: 0;
+      top: 20px;
+      text-align: center;
+      font-size: 42px;
+      color: #ffe27a;
+    }
+    #t2-card {
+      left: 80px;
+      top: 380px;
+      width: 920px;
+      height: 760px;
+    }
+    #t2-idcard {
+      position: absolute;
+      left: 390px;
+      top: 430px;
+      width: 300px;
+      height: 200px;
+    }
+    #t2-l1 { left: 0; right: 0; top: 680px; text-align: center; font-size: 56px; }
+    #t2-l2 { left: 0; right: 0; top: 768px; text-align: center; font-size: 86px; }
+    #t2-fmt { left: 0; right: 0; top: 920px; text-align: center; font-size: 40px; color: #bff0ff; }
+    #t2-card2 {
+      left: 80px;
+      top: 1200px;
+      width: 920px;
+      height: 400px;
+    }
+    #t2-teacher {
+      position: absolute;
+      left: 150px;
+      top: 1300px;
+      width: 200px;
+      height: 200px;
+    }
+    #t2-q { left: 390px; top: 1280px; font-size: 46px; }
+    #t2-a1 { left: 390px; top: 1360px; font-size: 46px; color: #ffffff; }
+    #t2-a2 { left: 390px; top: 1430px; font-size: 64px; }
+    #t2-a3 { left: 390px; top: 1520px; font-size: 46px; color: #ffffff; }
+  </style>
+  <div id="root" data-composition-id="t2-prep" data-width="1080" data-height="1920">
+    <div id="t2-all">
+      <div id="t2-badge" class="pill"><div class="t-title">SEBELUM MULA</div></div>
+      <div id="t2-card" class="glass"></div>
+      <svg id="t2-idcard" viewBox="0 0 300 200">
+        <rect x="6" y="6" width="288" height="188" rx="22" fill="#eaf4ff" stroke="#ffcc3a" stroke-width="8" />
+        <rect x="6" y="6" width="288" height="46" rx="22" fill="#2f6bff" />
+        <rect x="6" y="34" width="288" height="18" fill="#2f6bff" />
+        <circle cx="76" cy="118" r="36" fill="#9fc4ff" />
+        <path d="M40 176c6-24 20-34 36-34s30 10 36 34z" fill="#9fc4ff" />
+        <rect x="134" y="86" width="130" height="16" rx="8" fill="#0b2fa8" />
+        <rect x="134" y="116" width="100" height="14" rx="7" fill="#7fa6e6" />
+        <rect x="134" y="142" width="116" height="14" rx="7" fill="#7fa6e6" />
+      </svg>
+      <div id="t2-l1" class="t-title depth-soft"><span class="white-fill" id="t2-w1">Pastikan anda ada</span></div>
+      <div id="t2-l2" class="t-hero depth"><span class="gold-fill" id="t2-w2">ID DELIMa SENDIRI</span></div>
+      <div id="t2-fmt" class="t-small depth-soft">Format ID: …@moe-dl.edu.my</div>
+
+      <div id="t2-card2" class="glass"></div>
+      <svg id="t2-teacher" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="96" fill="#2f6bff" stroke="#ffcc3a" stroke-width="6" />
+        <circle cx="100" cy="78" r="34" fill="#ffe2c4" />
+        <path d="M46 168c8-36 30-52 54-52s46 16 54 52z" fill="#ffffff" />
+        <path d="M66 70c0-26 16-40 34-40s34 14 34 40c-10-12-24-16-34-16s-24 4-34 16z" fill="#3a2a1a" />
+        <rect x="118" y="120" width="44" height="32" rx="4" fill="#ffcc3a" />
+      </svg>
+      <div id="t2-q" class="t-title depth-soft"><span class="gold-fill" id="t2-qt">Belum ada ID DELIMa?</span></div>
+      <div id="t2-a1" class="t-sub depth-soft">Dapatkan daripada</div>
+      <div id="t2-a2" class="t-hero depth"><span class="white-fill" id="t2-a2t">GURU KELAS</span></div>
+      <div id="t2-a3" class="t-sub depth-soft">anda.</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // masuk dari bawah (4.6 s global)
+      tl.fromTo("#t2-all", { y: 500, opacity: 0, filter: "blur(16px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out" }, 0.2);
+      tl.fromTo("#t2-badge", { scale: 0.7 }, { scale: 1, duration: 0.4, ease: "back.out(1.7)" }, 0.5);
+      tl.fromTo("#t2-idcard", { rotate: -12, scale: 0.6, opacity: 0 }, { rotate: 0, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" }, 0.6);
+      tl.fromTo("#t2-w1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 0.9);
+      tl.fromTo("#t2-w2", { opacity: 0, scale: 0.85, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "back.out(1.6)" }, 1.1);
+      tl.fromTo("#t2-fmt", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.5);
+      tl.fromTo(["#t2-card2", "#t2-teacher"], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "expo.out" }, 2.1);
+      tl.fromTo(["#t2-q", "#t2-a1", "#t2-a2", "#t2-a3"], { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.12, ease: "expo.out" }, 2.4);
+      // 9.7 s keluar ke kiri
+      tl.to("#t2-all", { x: -700, opacity: 0, filter: "blur(16px)", duration: 0.45, ease: "power3.in" }, 5.3);
+      window.__timelines["t2-prep"] = tl;
+    })();
+  </script>
+</template>

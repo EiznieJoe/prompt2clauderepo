@@ -1,0 +1,245 @@
+<template>
+  <link rel="stylesheet" href="assets/shared.css" />
+  <style>
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-800-normal.woff2") format("woff2"); font-weight: 800; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-normal.woff2") format("woff2"); font-weight: 900; font-style: normal; }
+    @font-face { font-family: "DelimaDisplay"; src: url("assets/fonts/montserrat-latin-900-italic.woff2") format("woff2"); font-weight: 900; font-style: italic; }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    #t3-all {
+      position: absolute;
+      inset: 0;
+    }
+    #t3-phone {
+      position: absolute;
+      left: 196px;
+      top: 404px;
+      width: 688px;
+      height: 1478px;
+      border-radius: 62px;
+      background: #070b22;
+      box-shadow:
+        inset 0 0 0 3px rgba(150, 215, 255, 0.6),
+        0 0 60px rgba(60, 170, 255, 0.5),
+        0 30px 70px rgba(0, 0, 25, 0.6);
+    }
+    #t3-view {
+      position: absolute;
+      left: 216px;
+      top: 424px;
+      width: 648px;
+      height: 1440px;
+      border-radius: 44px;
+      overflow: hidden;
+      background: #000;
+    }
+    #t3-zoom {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 648px;
+      height: 1440px;
+      transform-origin: 0 0;
+    }
+    #t3-video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 648px;
+      height: 1440px;
+      object-fit: fill;
+    }
+    .t3-ring {
+      position: absolute;
+      border-radius: 14px;
+      box-shadow: 0 0 0 3px #ffcc3a, 0 0 16px 4px rgba(255, 204, 58, 0.8);
+      opacity: 0;
+    }
+    .t3-tap {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      margin: -30px 0 0 -30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 0 4px rgba(255, 204, 58, 0.95);
+      opacity: 0;
+    }
+    .t3-cap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 400px;
+    }
+    .t3-badge {
+      left: 375px;
+      top: 64px;
+      width: 330px;
+      height: 76px;
+    }
+    .t3-badge .t-title {
+      left: 0;
+      right: 0;
+      top: 17px;
+      text-align: center;
+      font-size: 40px;
+      color: #ffe27a;
+    }
+    .t3-text {
+      left: 40px;
+      width: 1000px;
+      top: 168px;
+      text-align: center;
+      font-size: 60px;
+      white-space: normal;
+      line-height: 1.12;
+    }
+    .t3-note {
+      left: 60px;
+      width: 960px;
+      top: 250px;
+      text-align: center;
+      font-size: 36px;
+      white-space: normal;
+      line-height: 1.25;
+      color: #dff2ff;
+    }
+    #t3-url {
+      left: 210px;
+      top: 258px;
+      width: 660px;
+      height: 84px;
+    }
+    #t3-url .t-sub {
+      left: 0;
+      right: 0;
+      top: 19px;
+      text-align: center;
+      font-size: 42px;
+      color: #ffffff;
+    }
+    #t3-check {
+      position: absolute;
+      left: 410px;
+      top: 1000px;
+      width: 260px;
+      height: 260px;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="t3-steps" data-width="1080" data-height="1920">
+    <div id="t3-all">
+      <div id="t3-phone"></div>
+      <div id="t3-view" data-layout-allow-overflow>
+        <div id="t3-zoom">
+          <!-- rakaman skrin sebenar, dipotong & maklumat peribadi dikaburkan (tools/build_screen.py) -->
+          <video id="t3-video" class="clip" src="assets/video/skrin-login.mp4" muted playsinline
+            data-start="0.1" data-duration="22.6" data-track-index="1"></video>
+          <div class="t3-ring" id="t3-r1" style="left: 65px; top: 93px; width: 362px; height: 61px"></div>
+          <div class="t3-ring" id="t3-r2" style="left: 507px; top: 154px; width: 137px; height: 44px"></div>
+          <div class="t3-ring" id="t3-r3" style="left: 509px; top: 196px; width: 101px; height: 42px"></div>
+          <div class="t3-ring" id="t3-r4a" style="left: 160px; top: 690px; width: 337px; height: 228px"></div>
+          <div class="t3-ring" id="t3-r4b" style="left: 160px; top: 926px; width: 286px; height: 50px"></div>
+          <div class="t3-tap" id="t3-tap1" style="left: 575px; top: 176px"></div>
+          <div class="t3-tap" id="t3-tap2" style="left: 556px; top: 217px"></div>
+          <div class="t3-tap" id="t3-tap3" style="left: 262px; top: 783px"></div>
+        </div>
+      </div>
+      <svg id="t3-check" viewBox="0 0 260 260">
+        <circle cx="130" cy="130" r="122" fill="#1fcf74" stroke="#ffffff" stroke-width="10" />
+        <path d="M70 134l40 40 80-86" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+
+      <!-- arahan langkah -->
+      <div class="t3-cap" id="t3-c1">
+        <div class="t3-badge pill"><div class="t-title">LANGKAH 1</div></div>
+        <div class="t3-text t-title depth-soft"><span class="white-fill">Buka laman DELIMa 3.0</span></div>
+        <div id="t3-url" class="pill"><div class="t-sub">d3.delima.edu.my/landing</div></div>
+      </div>
+      <div class="t3-cap" id="t3-c2">
+        <div class="t3-badge pill"><div class="t-title">LANGKAH 2</div></div>
+        <div class="t3-text t-title depth-soft"><span class="white-fill">Tekan butang ungu</span><br /><span class="gold-fill">“Log Masuk ke DELIMa”</span></div>
+      </div>
+      <div class="t3-cap" id="t3-c3">
+        <div class="t3-badge pill"><div class="t-title">LANGKAH 3</div></div>
+        <div class="t3-text t-title depth-soft"><span class="white-fill">Pilih</span> <span class="gold-fill">“Log masuk”</span></div>
+      </div>
+      <div class="t3-cap" id="t3-c4">
+        <div class="t3-badge pill"><div class="t-title">LANGKAH 4</div></div>
+        <div class="t3-text t-title depth-soft" style="top: 160px; font-size: 54px"><span class="white-fill">Pilih akaun</span> <span class="gold-fill">ID DELIMa</span> <span class="white-fill">anda</span></div>
+        <div class="t3-note t-small depth-soft">Tiada dalam senarai? Tekan “Use another account”, kemudian taip ID DELIMa dan kata laluan anda.</div>
+      </div>
+      <div class="t3-cap" id="t3-c5">
+        <div class="t3-badge pill"><div class="t-title">BERJAYA!</div></div>
+        <div class="t3-text t-title depth-soft"><span class="white-fill">Anda kini di</span><br /><span class="gold-fill">Ruang Aplikasi DELIMa 3.0</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const VW = 648, VH = 1440;
+      // kamera: zum z kali supaya titik (cx, cy) berada di tengah, dihadkan dalam skrin
+      function cam(z, cx, cy) {
+        const x = Math.min(0, Math.max(VW - VW * z, VW / 2 - z * cx));
+        const y = Math.min(0, Math.max(VH - VH * z, VH / 2 - z * cy));
+        return { scale: z, x: x, y: y };
+      }
+      const tl = gsap.timeline({ paused: true });
+      // masuk: telefon naik dari bawah (9.9-10.4 s global)
+      tl.fromTo(["#t3-phone", "#t3-view"], { y: 600, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.0);
+      tl.fromTo("#t3-zoom", cam(1, 324, 720), Object.assign(cam(1, 324, 720), { duration: 0.01 }), 0);
+
+      function capIn(sel, at) {
+        tl.fromTo(sel, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, at);
+      }
+      function capOut(sel, at) {
+        tl.to(sel, { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, at);
+      }
+      function ring(sel, a, b) {
+        tl.fromTo(sel, { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, a);
+        tl.to(sel, { opacity: 0, duration: 0.15 }, b);
+      }
+      function tap(sel, at) {
+        tl.fromTo(sel, { opacity: 1, scale: 0.4 }, { opacity: 0, scale: 1.7, duration: 0.5, ease: "power2.out" }, at);
+      }
+
+      // LANGKAH 1: buka laman (zum ke bar alamat)
+      capIn("#t3-c1", 0.15);
+      tl.fromTo("#t3-url", { scaleX: 0.6, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "expo.out" }, 0.45);
+      tl.to("#t3-zoom", Object.assign(cam(1.8, 246, 123), { duration: 0.55, ease: "power2.inOut" }), 0.7);
+      ring("#t3-r1", 1.25, 3.4);
+      capOut("#t3-c1", 3.4);
+      // LANGKAH 2: tekan "Log Masuk ke DELIMa"
+      capIn("#t3-c2", 3.6);
+      tl.to("#t3-zoom", Object.assign(cam(2.2, 575, 200), { duration: 0.5, ease: "power2.inOut" }), 3.5);
+      ring("#t3-r2", 4.05, 6.5);
+      tap("#t3-tap1", 6.5);
+      capOut("#t3-c2", 7.15);
+      // LANGKAH 3: pilih "Log masuk"
+      capIn("#t3-c3", 7.35);
+      ring("#t3-r3", 7.45, 11.55);
+      tap("#t3-tap2", 11.55);
+      capOut("#t3-c3", 11.75);
+      // LANGKAH 4: pilih akaun (senarai dikaburkan)
+      capIn("#t3-c4", 12.0);
+      tl.to("#t3-zoom", Object.assign(cam(1.5, 325, 820), { duration: 0.55, ease: "power2.inOut" }), 11.75);
+      ring("#t3-r4a", 12.4, 14.4);
+      ring("#t3-r4b", 14.5, 16.7);
+      tap("#t3-tap3", 17.4);
+      capOut("#t3-c4", 18.2);
+      // LANGKAH 5: berjaya
+      tl.to("#t3-zoom", Object.assign(cam(1, 324, 720), { duration: 0.55, ease: "power2.inOut" }), 17.75);
+      capIn("#t3-c5", 18.45);
+      tl.fromTo("#t3-check", { opacity: 0, scale: 0.3, rotate: -30 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.5, ease: "back.out(2)" }, 18.55);
+      tl.to("#t3-check", { x: 370, y: -520, scale: 0.42, duration: 0.6, ease: "power3.inOut" }, 20.1);
+      // keluar ke kad penutup (32.2-32.7 s global)
+      tl.to("#t3-all", { scale: 0.8, opacity: 0, filter: "blur(14px)", duration: 0.45, ease: "power3.in" }, 22.3);
+      window.__timelines["t3-steps"] = tl;
+    })();
+  </script>
+</template>

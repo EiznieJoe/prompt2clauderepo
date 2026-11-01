@@ -1,0 +1,7 @@
+node_modules/
+renders/
+.hyperframes/
+output/work-*/
+output/.*.hf-transaction-*/
+*.log
+assets/source/rakaman-skrin-asal.mp4
