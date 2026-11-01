@@ -52,6 +52,16 @@
       width: 1240px;
       height: 124px;
     }
+    #s8-pill-flash {
+      position: absolute;
+      left: 340px;
+      top: 724px;
+      width: 1240px;
+      height: 124px;
+      border-radius: 999px;
+      box-shadow: 0 0 0 5px #fff0a8, 0 0 60px 10px rgba(255, 210, 70, 0.85);
+      opacity: 0;
+    }
     #s8-cta {
       left: 0;
       right: 0;
@@ -101,6 +111,7 @@
     <div id="s8-name" class="t-title depth-soft"><span class="white-fill" id="s8-name-t">SK RUGADING, TUARAN</span></div>
     <div id="s8-years" class="t-title depth"><span class="gold-fill" id="s8-years-t">MURID TAHUN 1–6</span></div>
     <div id="s8-pill" class="pill"></div>
+    <div id="s8-pill-flash"></div>
     <div id="s8-cta" class="t-hero depth">
       <span class="gold-fill s8-k" id="s8-k1">LOGIN</span><span class="s8-dot" id="s8-d1">•</span><span class="gold-fill s8-k" id="s8-k2">PLAY</span><span class="s8-dot" id="s8-d2">•</span><span class="gold-fill s8-k" id="s8-k3">WIN!</span>
     </div>
@@ -154,15 +165,19 @@
       tl.fromTo("#s8-school > *", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.05);
       tl.fromTo(sheenS, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 0.8, ease: "power2.inOut" }, 1.6);
       tl.fromTo("#s8-name-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 1.45);
-      tl.fromTo("#s8-years-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 2.0);
-      // LOGIN • PLAY • WIN! ikut sebutan narasi
-      tl.fromTo("#s8-pill", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.5);
-      [["#s8-k1", 2.82], ["#s8-d1", 3.3], ["#s8-k2", 3.64], ["#s8-d2", 4.1], ["#s8-k3", 4.32]].forEach(function (k) {
+      tl.fromTo("#s8-years-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 1.8);
+      // LOGIN • PLAY • WIN! atas beat lagu (100 BPM): 54.96, 55.56, 56.16 s (hit penamat)
+      tl.fromTo("#s8-pill", { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.1);
+      [["#s8-k1", 2.36], ["#s8-d1", 2.66], ["#s8-k2", 2.96], ["#s8-d2", 3.26], ["#s8-k3", 3.56]].forEach(function (k) {
         tl.fromTo(k[0], { opacity: 0, scale: 0.6, filter: "blur(6px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "back.out(1.7)" }, k[1]);
       });
-      tl.fromTo("#s8-wait-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 4.4);
-      // 58.56 s hit penamat lagu: satu sapuan cahaya, kemudian bingkai kekal tenang hingga 60 s
-      tl.fromTo(sheenD, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 0.9, ease: "power2.inOut" }, 5.9);
+      tl.fromTo("#s8-wait-t", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 4.16);
+      // 56.16 s hit penamat lagu serentak WIN!: kilauan logo + pil bercahaya, kemudian bingkai tenang hingga 60 s
+      tl.fromTo(sheenD, { backgroundPosition: "160% 0" }, { backgroundPosition: "-60% 0", duration: 0.8, ease: "power2.out" }, 3.56);
+      tl.fromTo("#s8-pill-flash", { opacity: 0 }, { opacity: 1, duration: 0.08, ease: "none" }, 3.56);
+      tl.to("#s8-pill-flash", { opacity: 0.3, duration: 0.9, ease: "power2.out" }, 3.64);
+      tl.to("#s8-halo", { scale: 1.12, duration: 0.12, ease: "power2.out" }, 3.56);
+      tl.to("#s8-halo", { scale: 1, duration: 0.9, ease: "power3.out" }, 3.68);
       tl.set({}, {}, 7.4);
       window.__timelines["s8-finale"] = tl;
     })();

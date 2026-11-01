@@ -36,7 +36,38 @@
     },
     {
       "file": "assets/audio/vo-panduan/vo8.wav",
-      "at": 53.4
+      "at": 53.15,
+      "len": 1.7,
+      "_": "Jom sertai DELIMa Champions!"
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo8.wav",
+      "at": 54.94,
+      "trim": 2.0,
+      "len": 0.48,
+      "_": "Login (54.96 s, atas beat)"
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo8.wav",
+      "at": 55.54,
+      "trim": 2.84,
+      "len": 0.37,
+      "_": "Play (55.56 s)",
+      "duck": 0.6
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo8.wav",
+      "at": 56.14,
+      "trim": 3.52,
+      "len": 0.35,
+      "_": "Win! (56.16 s, hit penamat lagu)",
+      "duck": 0.35
+    },
+    {
+      "file": "assets/audio/vo-panduan/vo8.wav",
+      "at": 56.84,
+      "trim": 4.17,
+      "_": "Nantikan pengumuman guru."
     }
   ],
   "sfx": [
@@ -242,27 +273,21 @@
     },
     {
       "file": "pop.mp3",
-      "at": 55.3,
+      "at": 54.84,
       "gain_db": -15,
-      "hit": "55.42 LOGIN"
+      "hit": "54.96 LOGIN (beat lagu)"
     },
     {
       "file": "pop.mp3",
-      "at": 56.12,
+      "at": 55.44,
       "gain_db": -15,
-      "hit": "56.24 PLAY"
-    },
-    {
-      "file": "pop.mp3",
-      "at": 56.8,
-      "gain_db": -13,
-      "hit": "56.92 WIN!"
+      "hit": "55.56 PLAY (beat lagu)"
     },
     {
       "file": "sparkle.mp3",
-      "at": 58.53,
-      "gain_db": -11,
-      "hit": "58.56 hit penamat lagu"
+      "at": 56.13,
+      "gain_db": -10,
+      "hit": "56.16 WIN! + hit penamat lagu"
     }
   ]
 }

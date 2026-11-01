@@ -1,12 +1,12 @@
 """Sediakan muzik latar 60 s daripada "Epic" (kulakovka, Pixabay #624630).
 
 Lagu asal 100 BPM, downbeat pertama 0.595 s. Dua potongan, kedua-duanya
-pada fasa bar yang sama (beza ofset = 29 bar tepat), jadi rentak tak tersentak:
+pada fasa bar yang sama (beza ofset = 30 bar tepat), jadi rentak tak tersentak:
 
-  A: lagu 4.435 s  -> video 0.00-57.66   (masuk penuh lagu 10.195 s = 5.76 s video,
+  A: lagu 4.435 s  -> video 0.00-55.30   (masuk penuh lagu 10.195 s = 5.76 s video,
                                           serentak pendedahan logo DELIMa)
-  B: lagu 131.695 s -> video 57.66-60.00  (jeda sekejap, swell, hit penamat lagu
-                                          132.595 s = 58.56 s video)
+  B: lagu 131.735 s -> video 55.30-60.00  (swell, hit penamat lagu 132.595 s =
+                                          56.16 s video, serentak "WIN!", reda hingga 60 s)
 
     python3 tools/prepare_music.py   ->  assets/audio/stems/music.wav
 """
@@ -21,8 +21,8 @@ OUT = os.path.join(ROOT, "assets/audio/stems/music.wav")
 SR = 48000
 DUR = 60.0
 OFF_A = 10.195 - 5.76          # 4.435
-SPLICE = 57.66
-OFF_B = 132.595 - 58.56        # 74.035  (OFF_B - OFF_A = 69.6 s = 29 bar @ 100 BPM)
+SPLICE = 55.30
+OFF_B = 132.595 - 56.16        # 76.435  (OFF_B - OFF_A = 72.0 s = 30 bar @ 100 BPM)
 XF = 0.06                      # silang-pudar pada sambungan
 
 x = np.frombuffer(

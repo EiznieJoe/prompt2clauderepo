@@ -59,7 +59,7 @@ Had: poster rujukan hanya 1672×941, jadi lencana sekolah asalnya ~300 px tinggi
 ## Muzik & SFX
 
 - Muzik: **"Epic" oleh kulakovka** (Pixabay #624630, Lesen Kandungan Pixabay: bebas guna, termasuk komersial, tanpa atribusi wajib). Fail asal: `assets/audio/source/kulakovka-epic-624630.mp3`.
-- Lagu 100 BPM disunting jadi 60 s dalam dua potongan pada fasa bar yang sama (`tools/prepare_music.py`): bahagian masuk penuh lagu jatuh tepat pada pendedahan logo DELIMa (5.76 s), penutup kotak hadiah pada downbeat terkuat (51.36 s), dan hit penamat lagu pada 58.56 s.
+- Lagu 100 BPM disunting jadi 60 s dalam dua potongan pada fasa bar yang sama (`tools/prepare_music.py`): bahagian masuk penuh lagu jatuh tepat pada pendedahan logo DELIMa (5.76 s), penutup kotak hadiah pada downbeat terkuat (51.36 s), LOGIN • PLAY pada beat 54.96/55.56 s dan hit penamat lagu tepat pada "WIN!" (56.16 s), kemudian lagu reda hingga senyap pada 60 s.
 - Muzik diturunkan 16 dB di bawah narasi supaya suara jelas.
 - SFX: Pixabay (lesen Pixabay, lihat `assets/audio/sfx/CREDITS.md`). Setiap SFX disegerakkan dengan peristiwa visual; senarai penuh dalam `tools/cues.json`.
 - Loudness kedua-dua mix: -16 LUFS, true peak ≤ -1.4 dBFS (diukur, bukan didengar).

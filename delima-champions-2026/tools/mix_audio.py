@@ -48,8 +48,14 @@ N = int(DUR * SR)
 t = np.arange(N) / SR
 
 
-def place(buf, x, at, gain_db=0.0, trim=0.0):
+def place(buf, x, at, gain_db=0.0, trim=0.0, length=None):
     x = x[int(trim * SR):] * (10 ** (gain_db / 20))
+    if length is not None:
+        x = x[: int(length * SR)].copy()
+    if trim or length is not None:  # potongan: pudar 5 ms di hujung supaya tiada klik
+        f = min(int(0.005 * SR), len(x) // 2)
+        x[:f] *= np.linspace(0, 1, f)[:, None]
+        x[len(x) - f:] *= np.linspace(1, 0, f)[:, None]
     s = int(round(at * SR))
     e = min(N, s + len(x))
     if e > s:
@@ -70,15 +76,16 @@ vo = np.zeros((N, 2))
 windows = []
 for c in cues["vo"]:
     x = decode(os.path.join(ROOT, c["file"]))
-    place(vo, x, c["at"], c.get("gain_db", 0))
-    windows.append((c["at"], c["at"] + len(x) / SR))
+    trim, length = c.get("trim", 0.0), c.get("len")
+    place(vo, x, c["at"], c.get("gain_db", 0), trim, length)
+    windows.append((c["at"], c["at"] + (length if length is not None else len(x) / SR - trim), c.get("duck", 1.0)))
 
 # ducking envelope: smooth 0.25 s down, 0.4 s back up
 duck = np.zeros(N)
-for a, b in windows:
+for a, b, scale in windows:  # scale < 1: duck separa (cth. biar hit penamat muzik kedengaran)
     down = np.clip((t - (a - 0.25)) / 0.25, 0, 1)
     up = np.clip(((b + 0.4) - t) / 0.4, 0, 1)
-    duck = np.maximum(duck, np.minimum(down, up))
+    duck = np.maximum(duck, np.minimum(down, up) * scale)
 duck_gain = 10 ** (cues["music"]["duck_db"] * duck / 20)
 
 
@@ -121,7 +128,7 @@ master(music + sfx, os.path.join(ROOT, "assets/audio/mix-tanpa-vo.wav"))
 if "--report" in sys.argv:
     def db(x):
         return 20 * np.log10(np.sqrt((x ** 2).mean()) + 1e-12)
-    for a, b in windows:
+    for a, b, _ in windows:
         s, e = int(a * SR), int(b * SR)
         print(f"VO {a:5.1f}-{b:5.1f}: vo {db(vo[s:e]):6.1f} dB, music(ducked) {db((music * duck_gain[:, None])[s:e]):6.1f} dB, sfx {db(sfx[s:e]):6.1f}")
     for s in range(0, 60, 2):

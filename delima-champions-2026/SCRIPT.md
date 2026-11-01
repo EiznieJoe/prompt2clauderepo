@@ -11,7 +11,7 @@ Masa dalam saat (global). "Tetingkap VO" = ruang yang ada untuk baris itu tanpa 
 | 5 Fun Quiz | 29–37 | DELIMa FUN QUIZ / 10 SOALAN • UJI MINDA ANDA! | 5. "Uji minda melalui sepuluh soalan tentang DELIMa, keselamatan digital dan pembelajaran!" | 29.6–36.5 |
 | 6 Poster Digital | 37–45 | POSTER DIGITAL / SERLAHKAN KREATIVITI! / Khas untuk Tahun 4–6 / DELIMa dan AI Menjana Murid Kreatif | 6. "Murid Tahun Empat hingga Enam, serlahkan kreativiti melalui pertandingan Poster Digital DELIMa!" | 37.6–44.5 |
 | 7 Grand Lucky Draw | 45–53 | GRAND LUCKY DRAW / SIAPA BAKAL BERTUAH? / Log masuk disahkan + Siapkan Fun Quiz | 7. "Lengkapkan log masuk dan Fun Quiz untuk peluang menyertai Grand Lucky Draw!" | 45.5–51.6 |
-| 8 Penutup | 53–60 | LOGIN • PLAY • WIN! / MURID TAHUN 1–6 / NANTIKAN PENGUMUMAN GURU / SK RUGADING, TUARAN | 8. "Jom sertai DELIMa Champions! Login, Play, Win! Nantikan pengumuman guru." | 53.4–59.6 |
+| 8 Penutup | 53–60 | LOGIN • PLAY • WIN! / MURID TAHUN 1–6 / NANTIKAN PENGUMUMAN GURU / SK RUGADING, TUARAN | 8. "Jom sertai DELIMa Champions! Login, Play, Win! Nantikan pengumuman guru." | 53.15–58.4 (Login/Play/Win pada 54.96/55.56/56.16) |
 
 Sebutan: DELIMa = "de-li-ma" (bukan dieja huruf); Rugading = "Ru-ga-ding".
 
@@ -34,5 +34,5 @@ Kedudukan setiap baris: `tools/cues.json` → `vo[].at`. Kalau rakaman sebenar l
 | 33.05 | jawapan betul menyala | ping + letupan bintang |
 | 38.6–41.1 | kanvas bertukar jadi poster | pop + whoosh + kilauan |
 | 51.36 | penutup kotak hadiah terbuka | downbeat terkuat lagu + impak |
-| 55.42 / 56.24 / 56.92 | LOGIN / PLAY / WIN! | pop |
-| 57.0–60.0 | bingkai penutup tenang | hit penamat lagu 58.56 |
+| 54.96 / 55.56 / 56.16 | LOGIN / PLAY / WIN! (atas beat lagu) | pop / pop / hit penamat lagu + kilauan |
+| 56.8–60.0 | bingkai penutup tenang | hit penamat reda hingga senyap |
