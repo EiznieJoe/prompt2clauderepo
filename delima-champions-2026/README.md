@@ -6,19 +6,16 @@ Video promo 60 saat, 1920×1080, 30 fps, MP4 (H.264 + AAC), dibina dengan [Hyper
 
 | Fail | Isi |
 |---|---|
-| `output/delima-champions-2026-60s-vo-panduan.mp4` | Muzik + SFX + **suara panduan sintetik** (lihat nota di bawah) |
+| `output/delima-champions-2026-60s-narasi-yasmin.mp4` | Muzik + SFX + narasi Bahasa Melayu (suara neural Yasmin, ms-MY) |
 | `output/delima-champions-2026-60s-muzik-sfx.mp4` | Muzik + SFX sahaja, semua teks promosi kekal |
 
-### Nota penting: suara latar
+### Narasi
 
-Persekitaran produksi ini tiada akses kepada mana-mana enjin suara neural Bahasa Melayu (Microsoft/Google TTS, HuggingFace dan seumpamanya disekat rangkaian). Narasi dalam versi pertama dijana dengan **eSpeak NG (`ms`)**, yang berbunyi robotik. Ia **suara panduan untuk timing sahaja**, bukan untuk ditayangkan kepada murid.
+Narasi dijana dengan suara neural **ms-MY-YasminNeural** melalui `edge-tts` (`tools/edge_tts_vo.py`, teks dalam `tools/vo-script.json`). `edge-tts` guna perkhidmatan Read Aloud Microsoft Edge: percuma dan tanpa kunci, tetapi bukan API rasmi, jadi ia boleh berhenti berfungsi tanpa notis. Fail suara sedia ada (`assets/audio/vo/`) kekal dalam repo, jadi video boleh dibina semula tanpa perkhidmatan tu. Alternatif rasmi: `tools/azure_tts.py` (Azure Speech, perlukan kunci).
 
-Untuk versi akhir:
+Ayat dipecah pada jeda noktah dan disusun semula dalam `tools/cues.json` supaya setiap ayat jatuh pada teks skrinnya; "Login", "Play" dan "Win!" diletak atas beat lagu (54.96 / 55.56 / 56.16 s).
 
-1. Rakam 8 baris dalam `SCRIPT.md` (suara guru/murid sebenar, atau TTS Melayu berkualiti dari luar).
-2. Simpan sebagai `assets/audio/vo-panduan/vo1.wav` … `vo8.wav` (nama sama, ganti fail lama). Panjang setiap baris sebaiknya tidak melebihi tetingkap dalam `SCRIPT.md`.
-3. `python3 tools/mix_audio.py` — bina semula mix (ducking muzik ikut panjang rakaman baharu).
-4. `npm run render` — render semula.
+Untuk tukar suara (cth. rakaman guru): ganti fail dalam `assets/audio/vo/`, laraskan `vo[].at`/`trim`/`len` dalam `tools/cues.json`, jalankan `python3 tools/mix_audio.py`, kemudian `npm run render`.
 
 ## Struktur
 
@@ -34,9 +31,9 @@ compositions/s6-poster.html    37–45 s  Poster Digital (Tahun 4–6)
 compositions/s7-draw.html      45–53 s  Grand Lucky Draw (tiada hadiah khusus)
 compositions/s8-finale.html    53–60 s  penutup: kedua-dua logo + LOGIN • PLAY • WIN!
 assets/logos/                  logo dipotong daripada poster rujukan (lutsinar) + lapisan bevel
-assets/audio/                  mix siap, stem muzik, SFX, suara panduan
+assets/audio/                  mix siap, stem muzik, SFX, narasi
 assets/shared.css              warna, tipografi, rawatan logo 3D
-tools/                         skrip logo, muzik, suara panduan, mix
+tools/                         skrip logo, muzik, narasi (edge-tts/Azure), mix
 ```
 
 ## Edit & render

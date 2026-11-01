@@ -42,7 +42,9 @@ async def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     for i, line in enumerate(script, 1):
         raw = os.path.join(OUT_DIR, f"vo{i}-raw.mp3")
-        await edge_tts.Communicate(spoken(line["text"]), VOICE, rate=RATE).save(raw)
+        # edge-tts (aiohttp) tidak baca HTTPS_PROXY sendiri; hantar proxy secara eksplisit jika ada
+        proxy = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
+        await edge_tts.Communicate(spoken(line["text"]), VOICE, rate=RATE, proxy=proxy).save(raw)
         out = os.path.join(OUT_DIR, f"vo{i}.wav")
         subprocess.run(
             ["ffmpeg", "-y", "-v", "error", "-i", raw, "-af",

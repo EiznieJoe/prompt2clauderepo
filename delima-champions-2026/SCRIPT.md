@@ -15,11 +15,9 @@ Masa dalam saat (global). "Tetingkap VO" = ruang yang ada untuk baris itu tanpa 
 
 Sebutan: DELIMa = "de-li-ma" (bukan dieja huruf); Rugading = "Ru-ga-ding".
 
-## Suara panduan sintetik
+## Narasi
 
-`tools/vo-lines.txt` ialah ejaan fonetik yang diberi kepada eSpeak NG supaya sebutan hampir betul ("Delima", "Es Ke", "Cempiyens", "Plei" …). Teks skrin dan skrip di atas kekal ejaan rasmi. `tools/make_vo_guide.sh` menjana semula fail panduan.
-
-Kedudukan setiap baris: `tools/cues.json` → `vo[].at`. Kalau rakaman sebenar lebih panjang/pendek, laraskan `at` di situ dan jalankan `python3 tools/mix_audio.py`.
+Suara: ms-MY-YasminNeural (`tools/edge_tts_vo.py`). Kedudukan setiap ayat dalam `tools/cues.json` → `vo[]` (`at` = mula, `trim`/`len` = potongan dalam fail). Kalau suara ditukar, laraskan di situ dan jalankan `python3 tools/mix_audio.py`.
 
 ## Titik sync utama
 
