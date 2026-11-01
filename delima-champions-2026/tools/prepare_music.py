@@ -46,6 +46,42 @@ ramp = np.linspace(0, 1, xf)[:, None]
 out[:cut] = a[:cut]
 out[cut - xf:cut] = a[cut - xf:cut] * (1 - ramp) + b[:xf] * ramp
 out[cut:] = b[xf:xf + N - cut]
+# lapisan lembut penutup: gema hit penamat "dibekukan" (Paulstretch, fasa berbiji)
+# supaya nota & warna bunyi sama dengan hit, kemudian reda perlahan hingga 60 s
+HIT_TAIL = (132.70, 133.30)     # masa dalam lagu: sejurus selepas puncak hit
+PAD_START, PAD_PEAK, PAD_FADE, PAD_DB = 56.30, 57.00, 58.80, -3.0
+
+
+def paulstretch(seg, out_len, win=0.5, seed=7):
+    rng = np.random.default_rng(seed)
+    w = int(win * SR) // 2 * 2
+    window = np.hanning(w)
+    hop = w // 4
+    src_hop = max(1, (len(seg) - w) / max(1, (out_len - w) / hop))
+    y = np.zeros((out_len + w, seg.shape[1]))
+    pos, o = 0.0, 0
+    while o + w <= len(y):
+        i = int(pos) % max(1, len(seg) - w)
+        for ch in range(seg.shape[1]):
+            F = np.fft.rfft(seg[i:i + w, ch] * window)
+            ph = rng.uniform(0, 2 * np.pi, len(F))
+            y[o:o + w, ch] += np.fft.irfft(np.abs(F) * np.exp(1j * ph), w) * window
+        pos += src_hop
+        o += hop
+    return y[:out_len]
+
+
+tail = take(HIT_TAIL[0], int((HIT_TAIL[1] - HIT_TAIL[0]) * SR))
+n_pad = N - int(PAD_START * SR)
+pad = paulstretch(tail, n_pad)
+pad /= np.sqrt((pad[int(0.5 * SR):int(1.5 * SR)] ** 2).mean()) + 1e-9
+pad *= np.sqrt((tail ** 2).mean()) * 10 ** (PAD_DB / 20)
+tt = np.arange(n_pad) / SR + PAD_START
+env = np.clip((tt - PAD_START) / (PAD_PEAK - PAD_START), 0, 1)
+env *= 10 ** (-6 * np.clip((tt - PAD_PEAK) / (PAD_FADE - PAD_PEAK), 0, 1) / 20)  # turun 6 dB perlahan
+env *= np.cos(np.clip((tt - PAD_FADE) / (DUR - PAD_FADE), 0, 1) * np.pi / 2)        # pudar habis tepat 60 s
+out[int(PAD_START * SR):] += pad * env[:, None]
+
 # pudar masuk pendek (potongan A bermula di tengah frasa intro)
 fi = int(0.35 * SR)
 out[:fi] *= np.linspace(0, 1, fi)[:, None]

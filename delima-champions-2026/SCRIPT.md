@@ -35,4 +35,4 @@ Kedudukan setiap baris: `tools/cues.json` → `vo[].at`. Kalau rakaman sebenar l
 | 38.6–41.1 | kanvas bertukar jadi poster | pop + whoosh + kilauan |
 | 51.36 | penutup kotak hadiah terbuka | downbeat terkuat lagu + impak |
 | 54.96 / 55.56 / 56.16 | LOGIN / PLAY / WIN! (atas beat lagu) | pop / pop / hit penamat lagu + kilauan |
-| 56.8–60.0 | bingkai penutup tenang | hit penamat reda hingga senyap |
+| 56.8–60.0 | bingkai penutup tenang | gema hit dipanjangkan, reda perlahan hingga senyap tepat 60 s |
