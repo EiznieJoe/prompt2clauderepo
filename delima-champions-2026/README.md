@@ -58,8 +58,11 @@ Had: poster rujukan hanya 1672×941, jadi lencana sekolah asalnya ~300 px tinggi
 
 ## Muzik & SFX
 
-- Muzik: gubahan asal untuk video ini (`tools/compose_music.py`, 125 BPM, D major), dirender dengan soundfont GeneralUser GS (lesen bebas untuk kegunaan komersial). Drop muzik jatuh tepat pada pendedahan logo (5.76 s); penutup penutup kotak hadiah pada 51.84 s; kord penamat 57.6 s.
+- Muzik: **"Epic" oleh kulakovka** (Pixabay #624630, Lesen Kandungan Pixabay: bebas guna, termasuk komersial, tanpa atribusi wajib). Fail asal: `assets/audio/source/kulakovka-epic-624630.mp3`.
+- Lagu 100 BPM disunting jadi 60 s dalam dua potongan pada fasa bar yang sama (`tools/prepare_music.py`): bahagian masuk penuh lagu jatuh tepat pada pendedahan logo DELIMa (5.76 s), penutup kotak hadiah pada downbeat terkuat (51.36 s), dan hit penamat lagu pada 58.56 s.
+- Muzik diturunkan 16 dB di bawah narasi supaya suara jelas.
 - SFX: Pixabay (lesen Pixabay, lihat `assets/audio/sfx/CREDITS.md`). Setiap SFX disegerakkan dengan peristiwa visual; senarai penuh dalam `tools/cues.json`.
-- Loudness kedua-dua mix: -16 LUFS, true peak ≤ -1.3 dBFS (diukur, bukan didengar).
+- Loudness kedua-dua mix: -16 LUFS, true peak ≤ -1.4 dBFS (diukur, bukan didengar).
+- Gubahan asal yang digunakan sebelum ini (GeneralUser GS) masih ada dalam `tools/compose_music.py` + `tools/render_music.mjs` sebagai alternatif.
 
-Bina semula muzik: `cd tools && npm i && python3 compose_music.py && node render_music.mjs`.
+Bina semula muzik: `python3 tools/prepare_music.py && python3 tools/mix_audio.py`.

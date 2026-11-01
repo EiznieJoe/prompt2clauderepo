@@ -3,7 +3,7 @@
   "music": {
     "file": "assets/audio/stems/music.wav",
     "gain_db": -3.0,
-    "duck_db": -11.0
+    "duck_db": -16.0
   },
   "vo": [
     {
@@ -224,15 +224,15 @@
     },
     {
       "file": "impact-bass-2.mp3",
-      "at": 49.77,
+      "at": 49.29,
       "gain_db": -22,
-      "hit": "51.84 penutup kotak terbuka (downbeat finale)"
+      "hit": "51.36 penutup kotak terbuka (downbeat terkuat lagu)"
     },
     {
       "file": "sparkle.mp3",
-      "at": 51.86,
+      "at": 51.38,
       "gain_db": -8,
-      "hit": "51.9 cahaya + konfeti"
+      "hit": "51.4 cahaya + konfeti"
     },
     {
       "file": "whoosh.mp3",
@@ -260,9 +260,9 @@
     },
     {
       "file": "sparkle.mp3",
-      "at": 57.58,
+      "at": 58.53,
       "gain_db": -11,
-      "hit": "57.6 kord penamat"
+      "hit": "58.56 hit penamat lagu"
     }
   ]
 }

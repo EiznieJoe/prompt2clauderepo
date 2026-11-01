@@ -26,13 +26,13 @@ Kedudukan setiap baris: `tools/cues.json` → `vo[].at`. Kalau rakaman sebenar l
 | Masa | Peristiwa | Bunyi |
 |---|---|---|
 | 1.05 | portal terbuka | whoosh sinematik + kilauan |
-| 5.76 | logo DELIMa muncul | downbeat muzik penuh + impak bass |
+| 5.76 | logo DELIMa muncul | masuk penuh lagu + impak bass |
 | 14.4 / 14.65 | butang LOG MASUK ditekan / berjaya | klik / pop |
 | 15.86 | tiket emas muncul | kilauan |
 | 17.85 | tiket masuk kebuk cabutan | ping |
 | 21.3–24.34 | bar penyertaan naik ke trofi | riser |
 | 33.05 | jawapan betul menyala | ping + letupan bintang |
 | 38.6–41.1 | kanvas bertukar jadi poster | pop + whoosh + kilauan |
-| 51.84 | penutup kotak hadiah terbuka | downbeat finale + impak |
+| 51.36 | penutup kotak hadiah terbuka | downbeat terkuat lagu + impak |
 | 55.42 / 56.24 / 56.92 | LOGIN / PLAY / WIN! | pop |
-| 57.0–60.0 | bingkai penutup tenang | kord penamat 57.6 |
+| 57.0–60.0 | bingkai penutup tenang | hit penamat lagu 58.56 |

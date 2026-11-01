@@ -59,7 +59,7 @@ def place(buf, x, at, gain_db=0.0, trim=0.0):
 music = decode(os.path.join(ROOT, cues["music"]["file"]))[:N]
 music = np.pad(music, ((0, N - len(music)), (0, 0))) * (10 ** (cues["music"]["gain_db"] / 20))
 # fade the tail so the film ends clean on the last frame
-fade = np.clip((DUR - t) / 1.2, 0, 1) ** 1.5
+fade = np.clip((DUR - t) / 0.9, 0, 1) ** 1.5
 music *= fade[:, None]
 
 sfx = np.zeros((N, 2))

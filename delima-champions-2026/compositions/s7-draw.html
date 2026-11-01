@@ -234,16 +234,16 @@
       tl.fromTo("#s7-chip2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 2.1);
       tl.fromTo("#s7-q", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, 3.4);
       // jangkaan: cahaya bocor di celah penutup, kotak bergegar (seiring snare roll)
-      tl.fromTo([".s7-seam"], { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 2.4, ease: "power2.in" }, 4.8);
+      tl.fromTo([".s7-seam"], { opacity: 0, scaleX: 0.6 }, { opacity: 1, scaleX: 1, duration: 2.4, ease: "power2.in" }, 4.32);
       tl.fromTo(".s7-beam", { opacity: 0, scaleY: 0 }, { opacity: 0, scaleY: 0, duration: 0.01 }, 0);
       for (let k = 0; k < 12; k++) {
         const a = (k % 2 ? -1 : 1) * (1 + k * 0.22);
-        tl.to("#s7-boxL svg", { rotate: a, duration: 0.11, ease: "sine.inOut" }, 5.88 + k * 0.11);
-        tl.to("#s7-boxR svg", { rotate: -a, duration: 0.11, ease: "sine.inOut" }, 5.88 + k * 0.11);
+        tl.to("#s7-boxL svg", { rotate: a, duration: 0.11, ease: "sine.inOut" }, 5.4 + k * 0.11);
+        tl.to("#s7-boxR svg", { rotate: -a, duration: 0.11, ease: "sine.inOut" }, 5.4 + k * 0.11);
       }
-      tl.to([".s7-box svg"], { rotate: 0, duration: 0.06 }, 7.2);
-      // 51.84 s penutup terbuka dengan cahaya emas + konfeti
-      const OPEN = 7.24;
+      tl.to([".s7-box svg"], { rotate: 0, duration: 0.06 }, 6.72);
+      // 51.36 s penutup terbuka (downbeat terkuat lagu) dengan cahaya emas + konfeti
+      const OPEN = 6.76;
       tl.to("#s7-lidL", { y: -120, x: -170, rotate: -38, svgOrigin: "180 135", duration: 0.9, ease: "expo.out" }, OPEN);
       tl.to("#s7-lidR", { y: -120, x: 170, rotate: 38, svgOrigin: "180 135", duration: 0.9, ease: "expo.out" }, OPEN);
       tl.to(".s7-beam", { opacity: 1, scaleY: 1, duration: 0.35, ease: "expo.out" }, OPEN);
