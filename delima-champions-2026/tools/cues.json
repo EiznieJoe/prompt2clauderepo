@@ -5,99 +5,6 @@
     "gain_db": -3.0,
     "duck_db": -16.0
   },
-  "vo": [
-    {
-      "file": "assets/audio/vo/vo1.wav",
-      "at": 0.5,
-      "_": "Warga SK Rugading… bersedia untuk menjadi juara digital?"
-    },
-    {
-      "file": "assets/audio/vo/vo2.wav",
-      "at": 6.0,
-      "len": 2.6,
-      "_": "DELIMa Champions dua ribu dua puluh enam."
-    },
-    {
-      "file": "assets/audio/vo/vo2.wav",
-      "at": 8.85,
-      "trim": 3.52,
-      "_": "Misi juara digital bermula! (teks 8.8 s)"
-    },
-    {
-      "file": "assets/audio/vo/vo3.wav",
-      "at": 12.5,
-      "len": 2.85,
-      "_": "Log masuk menggunakan akaun DELIMa sendiri."
-    },
-    {
-      "file": "assets/audio/vo/vo3.wav",
-      "at": 15.7,
-      "trim": 3.8,
-      "_": "Sahkan penyertaan dan rebut peluang memenangi cabutan bertuah!"
-    },
-    {
-      "file": "assets/audio/vo/vo4.wav",
-      "at": 20.5,
-      "len": 1.8,
-      "_": "Bawa kelas anda ke puncak!"
-    },
-    {
-      "file": "assets/audio/vo/vo4.wav",
-      "at": 22.65,
-      "trim": 2.73,
-      "_": "Setiap penyertaan membantu kelas merebut gelaran terbaik."
-    },
-    {
-      "file": "assets/audio/vo/vo5.wav",
-      "at": 29.6,
-      "_": "Uji minda melalui sepuluh soalan tentang DELIMa, keselamatan digital dan pembelajaran!"
-    },
-    {
-      "file": "assets/audio/vo/vo6.wav",
-      "at": 37.6,
-      "_": "Murid Tahun Empat hingga Enam, serlahkan kreativiti melalui pertandingan Poster Digital DELIMa!"
-    },
-    {
-      "file": "assets/audio/vo/vo7.wav",
-      "at": 45.5,
-      "_": "Lengkapkan log masuk dan Fun Quiz untuk peluang menyertai Grand Lucky Draw!"
-    },
-    {
-      "file": "assets/audio/vo/vo8.wav",
-      "at": 52.8,
-      "len": 2.07,
-      "_": "Jom sertai DELIMa Champions!"
-    },
-    {
-      "file": "assets/audio/vo/vo8.wav",
-      "at": 54.93,
-      "trim": 3.0,
-      "len": 0.7,
-      "_": "Login (54.96 s, beat)"
-    },
-    {
-      "file": "assets/audio/vo/vo8.wav",
-      "at": 55.53,
-      "trim": 4.64,
-      "len": 0.64,
-      "duck": 0.6,
-      "_": "Play (55.56 s, beat)"
-    },
-    {
-      "file": "assets/audio/vo/vo8.wav",
-      "at": 56.13,
-      "trim": 6.24,
-      "len": 0.6,
-      "duck": 0.35,
-      "_": "Win! (56.16 s, hit penamat lagu)"
-    },
-    {
-      "file": "assets/audio/vo/vo8.wav",
-      "at": 56.8,
-      "trim": 7.74,
-      "_": "Nantikan pengumuman guru. (teks 56.76 s)"
-    }
-  ],
   "sfx": [
     {
       "file": "whoosh-cinematic.mp3",
@@ -317,5 +224,233 @@
       "gain_db": -10,
       "hit": "56.16 WIN! + hit penamat lagu"
     }
-  ]
+  ],
+  "vo_sets": {
+    "rakaman": [
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 0.4,
+        "trim": 0.37,
+        "len": 1.9,
+        "_": "Warga SK Rugading…",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 2.3,
+        "trim": 2.67,
+        "len": 2.98,
+        "_": "bersedia untuk menjadi juara digital?",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 5.95,
+        "trim": 6.15,
+        "len": 2.94,
+        "_": "DELIMa Champions dua ribu dua puluh enam.",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 8.9,
+        "trim": 9.49,
+        "len": 2.12,
+        "_": "Misi juara digital bermula! (teks 8.8 s)",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 12.25,
+        "trim": 12.21,
+        "len": 3.18,
+        "_": "Log masuk menggunakan akaun DELIMa sendiri.",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 15.5,
+        "trim": 15.65,
+        "len": 4.2,
+        "_": "Sahkan penyertaan dan rebut peluang memenangi cabutan bertuah!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 20.45,
+        "trim": 20.43,
+        "len": 1.72,
+        "_": "Bawa kelas anda ke puncak!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 22.45,
+        "trim": 22.55,
+        "len": 3.66,
+        "_": "Setiap penyertaan membantu kelas merebut gelaran terbaik.",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 29.5,
+        "trim": 26.89,
+        "len": 6.72,
+        "_": "Uji minda … keselamatan digital dan pembelajaran!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 37.45,
+        "trim": 34.29,
+        "len": 7.02,
+        "_": "Murid Tahun Empat hingga Enam … Poster Digital DELIMa!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 45.35,
+        "trim": 41.91,
+        "len": 5.26,
+        "_": "Lengkapkan log masuk dan Fun Quiz … Grand Lucky Draw!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 52.75,
+        "trim": 47.99,
+        "len": 2.14,
+        "_": "Jom sertai DELIMa Champions!",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 54.9,
+        "trim": 50.93,
+        "len": 0.76,
+        "_": "Login (54.96 s, beat)",
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 55.5,
+        "trim": 52.07,
+        "len": 0.52,
+        "_": "Play (55.56 s, beat)",
+        "duck": 0.6,
+        "gain_db": 3.5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 56.1,
+        "trim": 53.01,
+        "len": 0.54,
+        "_": "Win! (56.16 s, hit penamat lagu)",
+        "duck": 0.6,
+        "gain_db": 5
+      },
+      {
+        "file": "assets/audio/vo-rakaman/rakaman.wav",
+        "at": 56.75,
+        "trim": 53.82,
+        "len": 1.89,
+        "_": "Nantikan pengumuman guru.",
+        "gain_db": 3.5
+      }
+    ],
+    "yasmin": [
+      {
+        "file": "assets/audio/vo/vo1.wav",
+        "at": 0.5,
+        "_": "Warga SK Rugading… bersedia untuk menjadi juara digital?"
+      },
+      {
+        "file": "assets/audio/vo/vo2.wav",
+        "at": 6.0,
+        "len": 2.6,
+        "_": "DELIMa Champions dua ribu dua puluh enam."
+      },
+      {
+        "file": "assets/audio/vo/vo2.wav",
+        "at": 8.85,
+        "trim": 3.52,
+        "_": "Misi juara digital bermula! (teks 8.8 s)"
+      },
+      {
+        "file": "assets/audio/vo/vo3.wav",
+        "at": 12.5,
+        "len": 2.85,
+        "_": "Log masuk menggunakan akaun DELIMa sendiri."
+      },
+      {
+        "file": "assets/audio/vo/vo3.wav",
+        "at": 15.7,
+        "trim": 3.8,
+        "_": "Sahkan penyertaan dan rebut peluang memenangi cabutan bertuah!"
+      },
+      {
+        "file": "assets/audio/vo/vo4.wav",
+        "at": 20.5,
+        "len": 1.8,
+        "_": "Bawa kelas anda ke puncak!"
+      },
+      {
+        "file": "assets/audio/vo/vo4.wav",
+        "at": 22.65,
+        "trim": 2.73,
+        "_": "Setiap penyertaan membantu kelas merebut gelaran terbaik."
+      },
+      {
+        "file": "assets/audio/vo/vo5.wav",
+        "at": 29.6,
+        "_": "Uji minda melalui sepuluh soalan tentang DELIMa, keselamatan digital dan pembelajaran!"
+      },
+      {
+        "file": "assets/audio/vo/vo6.wav",
+        "at": 37.6,
+        "_": "Murid Tahun Empat hingga Enam, serlahkan kreativiti melalui pertandingan Poster Digital DELIMa!"
+      },
+      {
+        "file": "assets/audio/vo/vo7.wav",
+        "at": 45.5,
+        "_": "Lengkapkan log masuk dan Fun Quiz untuk peluang menyertai Grand Lucky Draw!"
+      },
+      {
+        "file": "assets/audio/vo/vo8.wav",
+        "at": 52.8,
+        "len": 2.07,
+        "_": "Jom sertai DELIMa Champions!"
+      },
+      {
+        "file": "assets/audio/vo/vo8.wav",
+        "at": 54.93,
+        "trim": 3.0,
+        "len": 0.7,
+        "_": "Login (54.96 s, beat)"
+      },
+      {
+        "file": "assets/audio/vo/vo8.wav",
+        "at": 55.53,
+        "trim": 4.64,
+        "len": 0.64,
+        "duck": 0.6,
+        "_": "Play (55.56 s, beat)"
+      },
+      {
+        "file": "assets/audio/vo/vo8.wav",
+        "at": 56.13,
+        "trim": 6.24,
+        "len": 0.6,
+        "duck": 0.35,
+        "_": "Win! (56.16 s, hit penamat lagu)"
+      },
+      {
+        "file": "assets/audio/vo/vo8.wav",
+        "at": 56.8,
+        "trim": 7.74,
+        "_": "Nantikan pengumuman guru. (teks 56.76 s)"
+      }
+    ]
+  },
+  "vo_active": "rakaman"
 }

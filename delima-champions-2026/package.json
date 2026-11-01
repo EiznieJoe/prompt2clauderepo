@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npx --yes hyperframes@0.8.169 preview",
     "check": "npx --yes hyperframes@0.8.169 check",
-    "render": "npx --yes hyperframes@0.8.169 render -q delivery -o output/delima-champions-2026-60s-narasi-yasmin.mp4",
+    "render": "npx --yes hyperframes@0.8.169 render -q delivery -o output/delima-champions-2026-60s-narasi-rakaman.mp4",
     "render:tanpa-vo": "npx --yes hyperframes@0.8.169 render -q delivery --variables '{\"audioMix\":\"assets/audio/mix-tanpa-vo.wav\"}' -o output/delima-champions-2026-60s-muzik-sfx.mp4",
     "publish": "npx --yes hyperframes@0.8.169 publish"
   }

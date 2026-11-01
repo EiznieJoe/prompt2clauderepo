@@ -74,7 +74,10 @@ for c in cues["sfx"]:
 
 vo = np.zeros((N, 2))
 windows = []
-for c in cues["vo"]:
+# set narasi aktif: cues["vo_active"] ("rakaman" / "yasmin"), atau --vo <nama>
+VO_SET = sys.argv[sys.argv.index("--vo") + 1] if "--vo" in sys.argv else cues.get("vo_active")
+VO_CUES = cues["vo_sets"][VO_SET] if VO_SET else cues["vo"]
+for c in VO_CUES:
     x = decode(os.path.join(ROOT, c["file"]))
     trim, length = c.get("trim", 0.0), c.get("len")
     place(vo, x, c["at"], c.get("gain_db", 0), trim, length)
@@ -122,7 +125,8 @@ def write_wav(path, x):
     )
 
 
-master(music * duck_gain[:, None] + sfx + vo, os.path.join(ROOT, "assets/audio/mix-dengan-vo.wav"))
+OUT_VO = sys.argv[sys.argv.index("--out") + 1] if "--out" in sys.argv else "assets/audio/mix-dengan-vo.wav"
+master(music * duck_gain[:, None] + sfx + vo, os.path.join(ROOT, OUT_VO))
 master(music + sfx, os.path.join(ROOT, "assets/audio/mix-tanpa-vo.wav"))
 
 if "--report" in sys.argv:
