@@ -30,3 +30,5 @@ Warna utama ada dalam `:root` di `index.html` (`--purple`, `--gold`, `--teal`, `
 
 - [`delima-champions-2026/`](delima-champions-2026/) — video promo 60s DELIMa Champions 2026, SK Rugading, Tuaran (projek HyperFrames berasingan, lihat README di dalamnya).
 - [`delima-login-tutorial/`](delima-login-tutorial/) — video tutorial menegak 40s "Cara Log Masuk DELIMa 3.0" untuk aktiviti Lucky Login.
+
+Panduan gaya & cara edit untuk siri video DELIMa: [`PANDUAN-EDIT-VIDEO.md`](PANDUAN-EDIT-VIDEO.md).

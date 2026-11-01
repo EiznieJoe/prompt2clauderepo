@@ -107,3 +107,14 @@ Fix all errors before presenting the result. Warnings should be reviewed before 
 4. A video with sound keeps it on the `<video>` (`data-has-audio="true"`, no `muted`). Use a separate `<audio>` for music, voiceover, replacement audio, J/L cuts, or audio detached in Studio. Silent footage and b-roll: `muted`.
 5. Sub-compositions use `data-composition-src="compositions/file.html"` to reference other HTML files
 6. Only deterministic logic — no `Date.now()`, no `Math.random()`, no network fetches
+
+## DELIMa video series (SK Rugading, Tuaran) — READ FIRST
+
+Before editing or creating any DELIMa / DELIMa Champions / Lucky Login video in this repo, read
+[`PANDUAN-EDIT-VIDEO.md`](PANDUAN-EDIT-VIDEO.md). It records the user's approved house style and
+workflow: Malay-language copy, Pixabay music uploaded by the user and cut so the track's hits land
+on the key visuals and CTA, a soft sustained tail to the last second (never dead silence), narration
+from the user's own recording or Gemini TTS (not eSpeak/edge-tts), free tools only, blurred personal
+data in screen recordings (raw recordings never committed), audio-only changes remuxed instead of
+re-rendered, and the reply/commit routine. Reference projects: `delima-champions-2026/` (promo,
+16:9) and `delima-login-tutorial/` (tutorial, 9:16).
